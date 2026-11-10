@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="title-c">
+  <title id="title-c">Centrior Concept C - The Calibrated Aperture</title>
+  <!-- Outer C Arc -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 207 63
+    A 92 92 0 1 0 207 193
+    L 179 165
+    A 52 52 0 1 1 179 91
+    Z
+  "/>
+  <!-- Focus Bar (The Priority Index) -->
+  <rect x="90" y="120" width="68" height="16" rx="8" fill="#000000"/>
+</svg>

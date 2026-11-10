@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing & Coverage
+/coverage
+/.playwright-mcp/
+/playwright-report/
+/test-results/
+
+# Next.js build output
+/.next/
+/out/
+build/
+dist/
+
+# TypeScript
+*.tsbuildinfo
+
+# SQLite / Local database
+*.db
+*.db-journal
+*.db-wal
+*.sqlite
+local.db
+
+# Environment variables
+.env*
+!.env.example
+
+# Graphify, AI tools & local agent artifacts
+graphify-out/
+.claude/
+.impeccable/
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
