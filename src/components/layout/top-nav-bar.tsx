@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   TrendingUp,
   Search,
@@ -11,16 +11,51 @@ import {
   ChevronDown,
   Menu,
   Sparkles,
+  LogOut,
+  Settings,
+  Shield,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { MobileDrawer } from '@/components/layout/sidebar';
 import { AiAdvisorDialog } from '@/components/dashboard/ai-advisor-dialog';
 import { CentriorLogo } from '@/components/brand/centrior-logo';
+import { authClient } from '@/lib/auth-client';
 
 export function TopNavBar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { data: session } = authClient.useSession();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAiOpen, setIsAiOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+    router.push('/login');
+    router.refresh();
+  };
+
+  const userName = session?.user?.name || 'Lucas (Demonstração)';
+  const userEmail = session?.user?.email || 'demo@centrior.app';
+  const isDemo = Boolean((session?.user as any)?.isDemo);
+  const initials = userName
+    .split(' ')
+    .filter(Boolean)
+    .map((n) => n[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase() || 'LC';
 
   const navLinks = [
     { name: 'Visão Geral', href: '/' },
@@ -108,20 +143,63 @@ export function TopNavBar() {
             <HelpCircle className="h-4 w-4" />
           </button>
 
-          {/* User Profile Pill */}
-          <div className="flex items-center gap-2.5 pl-1.5 pr-3 py-1.5 rounded-full bg-white dark:bg-card border border-slate-200/70 dark:border-border shadow-xs hover:shadow-sm cursor-pointer transition-all">
-            <div className="h-8 w-8 rounded-full bg-slate-900 text-white font-semibold text-xs flex items-center justify-center shadow-xs">
-              LS
-            </div>
-            <div className="hidden sm:flex flex-col text-left">
-              <span className="text-xs font-semibold text-slate-900 dark:text-white leading-tight">
-                Lucas Silva
-              </span>
-              <span className="text-[10px] text-slate-400 leading-tight">
-                lucas@empresa.com
-              </span>
-            </div>
-            <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
+          {/* User Profile Pill & Dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="flex items-center gap-2.5 pl-1.5 pr-3 py-1.5 rounded-full bg-white dark:bg-card border border-slate-200/70 dark:border-border shadow-xs hover:shadow-sm cursor-pointer transition-all"
+              aria-expanded={isDropdownOpen}
+              aria-label="Menu do usuário"
+            >
+              <div className="h-8 w-8 rounded-full bg-slate-900 text-white font-semibold text-xs flex items-center justify-center shadow-xs">
+                {initials}
+              </div>
+              <div className="hidden sm:flex flex-col text-left">
+                <span className="text-xs font-semibold text-slate-900 dark:text-white leading-tight">
+                  {userName}
+                </span>
+                <span className="text-[10px] text-slate-400 leading-tight">
+                  {userEmail}
+                </span>
+              </div>
+              <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
+            </button>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-56 rounded-2xl bg-white dark:bg-card border border-slate-200/80 dark:border-border shadow-xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="px-3 py-2 border-b border-slate-100 dark:border-border mb-1">
+                  <p className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                    {userName}
+                  </p>
+                  <p className="text-[10px] text-slate-400 truncate">
+                    {userEmail}
+                  </p>
+                  {isDemo && (
+                    <span className="mt-1.5 inline-block text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                      Ambiente Demo
+                    </span>
+                  )}
+                </div>
+
+                <Link
+                  href="/settings"
+                  onClick={() => setIsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                >
+                  <Settings className="h-3.5 w-3.5 text-slate-400" />
+                  <span>Configurações & Segurança</span>
+                </Link>
+
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors text-left"
+                >
+                  <LogOut className="h-3.5 w-3.5" />
+                  <span>Encerrar Sessão</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </header>

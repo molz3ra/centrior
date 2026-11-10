@@ -1,9 +1,21 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/db/index';
 import * as schema from '@/db/schema';
+import { getCurrentSession } from '@/lib/guard';
+import { eq } from 'drizzle-orm';
 
 export async function POST() {
   try {
+    const session = await getCurrentSession();
+
+    // Blindagem de Segurança: Apenas contas identificadas como demo ou sem sessão (no modo visitante)
+    if (session && !(session.user as any).isDemo) {
+      return NextResponse.json(
+        { error: 'Acesso negado: Contas reais não podem executar reset de demonstração.' },
+        { status: 403 }
+      );
+    }
+
     console.log('🔄 Resetting Recruiter Demo Data...');
 
     const id = crypto.randomUUID();
@@ -26,7 +38,6 @@ export async function POST() {
     });
   } catch (error) {
     console.error('Failed to reset demo:', error);
-    // Even if remote DB connection is restricted in certain sandbox modes, return graceful success
     return NextResponse.json({
       success: true,
       message: 'Demo reset gracefully in local state',

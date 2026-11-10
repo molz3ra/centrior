@@ -1,15 +1,26 @@
 import { NextRequest } from 'next/server';
+import { getCurrentSession } from '@/lib/guard';
 
 /**
  * Endpoint de Streaming de Consultoria Financeira com IA (Regra 13).
  * Transmite tokens em tempo real via ReadableStream HTTP para latência sub-300ms.
+ * Protegido por autenticação para prevenção de abuso de cota e isolamento de contexto.
  */
 export async function POST(req: NextRequest) {
   try {
+    const session = await getCurrentSession();
+    if (!session) {
+      return new Response(JSON.stringify({ error: 'Unauthorized: Autenticação necessária.' }), {
+        status: 401,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
     const { prompt } = await req.json();
+    const userName = session.user.name || 'Lucas';
 
     const sampleResponses = [
-      `Analisando sua posição financeira consolidada:\n\n`,
+      `Analisando sua posição financeira consolidada, ${userName}:\n\n`,
       `1. **Liquidez**: Seu saldo consolidado de **R$ 689.372,00** apresenta uma margem de reserva excelente (5.4% acima da média do mês anterior).\n`,
       `2. **Cartões de Crédito**: A fatura atual está em **25% do limite** total, bem abaixo da zona de alerta de 70%.\n`,
       `3. **Orçamentos**: O teto de Moradia & Contas Fixas está em 96% de consumo. Recomendo pausar despesas variáveis nesta categoria até o dia 28.\n`,
@@ -45,4 +56,3 @@ export async function POST(req: NextRequest) {
     });
   }
 }
-

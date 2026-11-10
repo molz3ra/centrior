@@ -8,6 +8,13 @@
       "when": 1794266701536,
       "tag": "0000_cute_hardball",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1794353425151,
+      "tag": "0001_wide_rogue",
+      "breakpoints": true
     }
   ]
 }

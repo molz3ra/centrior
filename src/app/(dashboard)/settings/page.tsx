@@ -179,6 +179,53 @@ export default function SettingsPage() {
           </div>
         </div>
 
+        {/* Security & Active Session Card */}
+        <div className="lg:col-span-2 rounded-[28px] bg-white dark:bg-card p-6 border border-slate-100 dark:border-border shadow-xs space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FF5722] text-white shadow-xs">
+              <Shield className="h-5 w-5" />
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 dark:text-white text-base">
+                Segurança, Sessões & Privacidade (LGPD)
+              </h3>
+              <p className="text-xs text-slate-400">
+                Gerenciamento de credenciais, auditoria de acesso e direito ao esquecimento.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-border space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-slate-900 dark:text-white">Dispositivo Atual</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                  Ativo Agora
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-500">
+                Sessão criptografada via cookies protegidos (HttpOnly, SameSite=Lax).
+              </p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-rose-50/50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/30 space-y-2">
+              <span className="text-xs font-bold text-rose-700 dark:text-rose-400 block">
+                Direito à Eliminação de Dados (Art. 18 LGPD)
+              </span>
+              <p className="text-[11px] text-rose-600/80 dark:text-rose-300">
+                Solicite a exclusão total e irreversível do seu usuário, contas, transações e histórico patrimonial.
+              </p>
+              <button
+                type="button"
+                onClick={() => alert('Para excluir sua conta definitivamente, envie confirmação para dpo@centrior.app ou use o canal seguro.')}
+                className="text-[11px] font-bold text-rose-600 hover:text-rose-700 underline"
+              >
+                Solicitar Exclusão de Conta
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Database & Data Management Card */}
         <div className="lg:col-span-2 rounded-[28px] bg-white dark:bg-card p-6 border border-slate-100 dark:border-border shadow-xs space-y-4">
           <div className="flex items-center gap-3">

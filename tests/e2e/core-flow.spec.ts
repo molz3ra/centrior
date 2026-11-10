@@ -1,12 +1,17 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Finance Control Core Flow', () => {
+  test.beforeEach(async ({ page }) => {
+    // Autentica via sessão sandbox demo
+    await page.request.post('/api/auth/demo-login');
+  });
+
   test('Access dashboard, check KPI values, simulate mock transaction, and verify demo reset', async ({ page }) => {
     // 1. Access the dashboard
     await page.goto('/');
 
     // Wait for page load and verify dashboard header content
-    await expect(page.locator('text=Good morning, Lucas')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('text=Good morning')).toBeVisible({ timeout: 15000 });
 
     // 2. Check KPI values exist and are visible
     const balanceCard = page.locator('text=Saldo Total Consolidado').first();
@@ -21,6 +26,6 @@ test.describe('Finance Control Core Flow', () => {
 
     // Reload page to verify state after demo reset
     await page.reload();
-    await expect(page.locator('text=Good morning, Lucas')).toBeVisible();
+    await expect(page.locator('text=Good morning')).toBeVisible();
   });
 });

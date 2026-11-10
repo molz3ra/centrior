@@ -7,7 +7,7 @@ test.describe('Conformidade LGPD (Lei 13.709/2018) & Governança de Dados', () =
   });
 
   test('1. Banner de Cookies e Consentimento Granular (Art. 7º e 8º da LGPD)', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/login');
 
     // Limpa localStorage para disparar o banner como novo visitante
     await page.evaluate(() => localStorage.removeItem('centrior_cookie_consent'));
@@ -70,6 +70,7 @@ test.describe('Conformidade LGPD (Lei 13.709/2018) & Governança de Dados', () =
   });
 
   test('3. Rodapé Institucional com Identificação Legal em Todas as Páginas (Decreto 7.962/2013)', async ({ page }) => {
+    await page.request.post('/api/auth/demo-login');
     await page.goto('/');
 
     const footer = page.locator('footer');
@@ -84,6 +85,7 @@ test.describe('Conformidade LGPD (Lei 13.709/2018) & Governança de Dados', () =
   });
 
   test('4. Direito à Portabilidade de Dados (Art. 18, V) via Exportação', async ({ page }) => {
+    await page.request.post('/api/auth/demo-login');
     await page.goto('/transactions');
 
     // Botão de exportação de dados para formato interoperável
@@ -92,6 +94,7 @@ test.describe('Conformidade LGPD (Lei 13.709/2018) & Governança de Dados', () =
   });
 
   test('5. Direito à Eliminação e Revogação (Art. 18, VI)', async ({ page }) => {
+    await page.request.post('/api/auth/demo-login');
     await page.goto('/settings');
 
     // Botão de reset e limpeza de dados

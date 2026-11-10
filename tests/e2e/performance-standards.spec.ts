@@ -1,6 +1,11 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Auditoria de Performance - As 31 Regras Essenciais', () => {
+  test.beforeEach(async ({ page }) => {
+    // Autentica via sessão sandbox demo
+    await page.request.post('/api/auth/demo-login');
+  });
+
   test('Regra 31: Deve carregar com CPU 4x Throttled e manter domInteractive sub-1s', async ({ page }) => {
     // Inicializa CDP session para emulação de hardware de entrada
     const client = await page.context().newCDPSession(page);
@@ -21,7 +26,7 @@ test.describe('Auditoria de Performance - As 31 Regras Essenciais', () => {
     const loadTime = Date.now() - start;
 
     // Verifica presença do header principal e dos cards
-    await expect(page.locator('text=Good morning, Lucas')).toBeVisible();
+    await expect(page.locator('text=Good morning')).toBeVisible();
     await expect(page.locator('text=R$ 689.372,00')).toBeVisible();
 
     // Valida que mesmo throttled, carregou com rapidez no servidor de desenvolvimento
@@ -39,4 +44,3 @@ test.describe('Auditoria de Performance - As 31 Regras Essenciais', () => {
     expect(count).toBeGreaterThan(5);
   });
 });
-
