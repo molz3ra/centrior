@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Sparkles, Send, X, Bot, User, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { fetchWithTimeout } from '@/lib/fetch-timeout';
 
 interface AiAdvisorDialogProps {
   isOpen: boolean;
@@ -41,10 +42,11 @@ export function AiAdvisorDialog({ isOpen, onClose }: AiAdvisorDialogProps) {
     setMessages((prev) => [...prev, { role: 'assistant', content: '' }]);
 
     try {
-      const res = await fetch('/api/ai/advisor', {
+      const res = await fetchWithTimeout('/api/ai/advisor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: userText }),
+        timeoutMs: 15000,
       });
 
       if (!res.body) throw new Error('Sem stream');

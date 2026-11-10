@@ -139,8 +139,7 @@ erDiagram
 
 ```
 centrior/
-├── brand/                    # Ativos de identidade visual, logotipos e scripts de renderização
-│   └── logos/                # Versões vetoriais SVG (símbolo, lockup claro e escuro)
+├── brand/                    # Ativos vetoriais master oficiais (símbolo e lockup horizontal)
 ├── drizzle/                  # Migrações geradas pelo Drizzle Kit
 ├── public/                   # Favicons, Web App Manifest e banner OpenGraph (1200x630)
 ├── src/
