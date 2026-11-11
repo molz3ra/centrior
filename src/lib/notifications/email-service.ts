@@ -24,7 +24,7 @@ export interface EmailResult {
  */
 export async function sendTransactionalEmail(payload: EmailPayload): Promise<EmailResult> {
   const resendApiKey = process.env.RESEND_API_KEY;
-  const fromEmail = process.env.EMAIL_FROM || 'Centrior Notificações <alertas@centrior.app>';
+  const fromEmail = process.env.EMAIL_FROM || 'Centrior <onboarding@resend.dev>';
 
   // Se houver chave do Resend configurada, realiza disparo real
   if (resendApiKey) {
