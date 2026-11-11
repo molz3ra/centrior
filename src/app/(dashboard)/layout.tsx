@@ -15,7 +15,7 @@ export default function DashboardLayout({
       <VerticalRail />
 
       {/* Main Content Area */}
-      <div className="flex flex-1 flex-col overflow-hidden px-3 sm:px-6 py-3">
+      <div className="flex flex-1 flex-col overflow-hidden min-w-0 px-3 sm:px-6 py-3">
         {/* Recruiter / Demo Notice Banner */}
         <DemoBanner />
 

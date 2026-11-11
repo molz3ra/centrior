@@ -81,3 +81,4 @@ export async function requireWorkspace(workspaceId: string) {
 
   throw new Error('403 Forbidden: Você não possui autorização para acessar este workspace.');
 }
+
