@@ -176,7 +176,7 @@ const generateDemoTransactions = (): TransactionItem[] => {
     description: i % 10 === 0 ? 'Salário Mensal' : `Transação comercial #${i + 100}`,
     category: categories[i % categories.length],
     account: accounts[i % accounts.length],
-    amountCents: i % 10 === 0 ? 800000 : Math.floor(Math.random() * 50000) + 1200,
+    amountCents: i % 10 === 0 ? 800000 : ((i * 3571) % 48000) + 1500,
     type: (i % 10 === 0 ? 'INCOME' : 'EXPENSE') as 'INCOME' | 'EXPENSE',
   })).reverse();
 };
@@ -213,6 +213,13 @@ interface FinanceContextType {
 }
 
 const FinanceContext = createContext<FinanceContextType | null>(null);
+
+function generateSafeId(prefix: string): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return `${prefix}-${crypto.randomUUID()}`;
+  }
+  return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 8)}`;
+}
 
 export function FinanceProvider({ children }: { children: React.ReactNode }) {
   const { data: session } = authClient.useSession();
@@ -283,7 +290,7 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
   const addAccount = useCallback((acc: Omit<AccountItem, 'id'>) => {
     const newAcc: AccountItem = {
       ...acc,
-      id: `acc-real-${crypto.randomUUID()}`,
+      id: generateSafeId('acc-real'),
     };
     setRealAccounts((prev) => {
       const updated = [newAcc, ...prev];
@@ -296,7 +303,7 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
   const addTransaction = useCallback((tx: Omit<TransactionItem, 'id'>) => {
     const newTx: TransactionItem = {
       ...tx,
-      id: `tx-real-${crypto.randomUUID()}`,
+      id: generateSafeId('tx-real'),
     };
     setRealTransactions((prev) => {
       const updated = [newTx, ...prev];
@@ -322,7 +329,7 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
   const addCard = useCallback((card: Omit<CreditCardItem, 'id'>) => {
     const newCard: CreditCardItem = {
       ...card,
-      id: `card-real-${crypto.randomUUID()}`,
+      id: generateSafeId('card-real'),
     };
     setRealCards((prev) => {
       const updated = [newCard, ...prev];
@@ -335,7 +342,7 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
   const addBudget = useCallback((budget: Omit<BudgetItem, 'id'>) => {
     const newBudget: BudgetItem = {
       ...budget,
-      id: `budget-real-${crypto.randomUUID()}`,
+      id: generateSafeId('budget-real'),
     };
     setRealBudgets((prev) => {
       const updated = [newBudget, ...prev];
