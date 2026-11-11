@@ -3,6 +3,11 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from '@/db/index';
 import * as schema from '@/db/schema';
 
+const authSecret = process.env.BETTER_AUTH_SECRET;
+if (!authSecret && process.env.NODE_ENV === 'production') {
+  throw new Error('CRITICAL SECURITY ERROR: BETTER_AUTH_SECRET must be configured in production!');
+}
+
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: 'sqlite',
@@ -13,7 +18,7 @@ export const auth = betterAuth({
       verification: schema.verification,
     },
   }),
-  secret: process.env.BETTER_AUTH_SECRET || 'centrior-secret-auth-encryption-key-2026-fintech',
+  secret: authSecret || 'centrior-dev-sandbox-encryption-key-2026',
   baseURL: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
   emailAndPassword: {
     enabled: true,

@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server';
 import { getCurrentSession } from '@/lib/guard';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 /**
  * Endpoint de Streaming de Consultoria Financeira com IA (Regra 13).
@@ -14,6 +15,23 @@ export async function POST(req: NextRequest) {
         status: 401,
         headers: { 'Content-Type': 'application/json' },
       });
+    }
+
+    // Blindagem de Rate Limiting (Máx 20 consultas por minuto por usuário)
+    const rateCheck = checkRateLimit(`ai_advisor_${session.user.id}`, 20, 60000);
+    if (!rateCheck.success) {
+      return new Response(
+        JSON.stringify({
+          error: `Muitas consultas consecutivas. Aguarde ${rateCheck.resetSeconds} segundos.`,
+        }),
+        {
+          status: 429,
+          headers: {
+            'Content-Type': 'application/json',
+            'Retry-After': String(rateCheck.resetSeconds),
+          },
+        }
+      );
     }
 
     const { prompt } = await req.json();

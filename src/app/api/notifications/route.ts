@@ -4,6 +4,7 @@ import { db } from '@/db';
 import { notifications } from '@/db/schema';
 import { eq, and, desc } from 'drizzle-orm';
 import { notifyUser } from '@/lib/notifications/dispatcher';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 /**
  * GET /api/notifications
@@ -41,6 +42,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });
     }
 
+    // Rate Limiting para evitar spam de envio de e-mails/alertas
+    const rateCheck = checkRateLimit(`notif_dispatch_${session.user.id}`, 20, 60000);
+    if (!rateCheck.success) {
+      return NextResponse.json(
+        { error: 'Limite de envio excedido. Aguarde antes de enviar novos alertas.' },
+        { status: 429, headers: { 'Retry-After': String(rateCheck.resetSeconds) } }
+      );
+    }
+
     const body = await req.json();
     const { type, title, message, severity, link, channels, metadata } = body;
 
@@ -75,6 +85,15 @@ export async function PATCH(req: NextRequest) {
     const session = await auth.api.getSession({ headers: req.headers });
     if (!session?.user) {
       return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });
+    }
+
+    // Rate Limiting para evitar spam de envio de e-mails/alertas
+    const rateCheck = checkRateLimit(`notif_dispatch_${session.user.id}`, 20, 60000);
+    if (!rateCheck.success) {
+      return NextResponse.json(
+        { error: 'Limite de envio excedido. Aguarde antes de enviar novos alertas.' },
+        { status: 429, headers: { 'Retry-After': String(rateCheck.resetSeconds) } }
+      );
     }
 
     const body = await req.json();

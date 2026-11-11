@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 const PUBLIC_PATHS = [
   '/login',
@@ -12,6 +13,21 @@ const PUBLIC_PATHS = [
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Proteção contra Força Bruta em endpoints de Autenticação (OWASP Top 10 A07:2021)
+  if (
+    request.method === 'POST' &&
+    (pathname.includes('/sign-in') || pathname.includes('/sign-up'))
+  ) {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1';
+    const rate = checkRateLimit(`auth_attempt_${ip}`, 15, 60000);
+    if (!rate.success) {
+      return NextResponse.json(
+        { error: 'Muitas tentativas consecutivas de autenticação. Aguarde 1 minuto.' },
+        { status: 429, headers: { 'Retry-After': String(rate.resetSeconds) } }
+      );
+    }
+  }
 
   // 1. Arquivos estáticos, rotas de API do Better Auth e metadados
   if (
