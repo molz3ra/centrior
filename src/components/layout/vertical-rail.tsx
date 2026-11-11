@@ -95,9 +95,10 @@ export function VerticalRail() {
             <Link
               key={idx}
               href={item.href}
+              prefetch={true}
               title={item.label}
               className={cn(
-                'relative flex h-11 w-11 items-center justify-center rounded-2xl transition-all duration-200',
+                'relative flex h-11 w-11 items-center justify-center rounded-2xl transition-colors duration-150 ease-out',
                 isActive
                   ? 'bg-slate-900 text-white shadow-sm dark:bg-primary dark:text-white'
                   : 'text-slate-400 hover:text-slate-700 hover:bg-white/80 dark:hover:bg-card'

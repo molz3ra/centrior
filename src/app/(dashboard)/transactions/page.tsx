@@ -56,7 +56,7 @@ export default function TransactionsPage() {
   const netBalanceCents = totalIncomeCents - totalExpenseCents;
 
   return (
-    <div className="space-y-6 animate-in fade-in duration-300">
+    <div className="space-y-6 animate-in fade-in-50 duration-150 ease-out will-change-[opacity]">
       {/* Page Title & Actions */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
         <div>

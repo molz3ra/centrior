@@ -1,40 +1,22 @@
 'use client';
 
 import React from 'react';
-import dynamic from 'next/dynamic';
 import { BalanceWalletsCard } from '@/components/dashboard/balance-wallets-card';
 import { SpendingLimitCard } from '@/components/dashboard/spending-limit-card';
 import { DigitalCardsCard } from '@/components/dashboard/digital-cards-card';
 import { KpiQuadGrid } from '@/components/dashboard/kpi-quad-grid';
 import { RecentActivitiesTable } from '@/components/dashboard/recent-activities-table';
 import { QuickSummaryCard } from '@/components/dashboard/quick-summary-card';
-import { Skeleton } from '@/components/ui/skeleton';
+import { ProfitLossChart } from '@/components/dashboard/profit-loss-chart';
 import { Calendar } from 'lucide-react';
 import { useFinanceData } from '@/features/finance/finance-context';
-
-// Code Splitting com Skeleton para o Gráfico de Lucro & Prejuízo (Regra 22)
-const ProfitLossChart = dynamic(
-  () => import('@/components/dashboard/profit-loss-chart').then((mod) => mod.ProfitLossChart),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="rounded-[28px] bg-white dark:bg-card p-6 border border-slate-100 dark:border-border h-[380px] flex flex-col justify-between">
-        <div className="space-y-2">
-          <Skeleton className="h-5 w-44 rounded-full" />
-          <Skeleton className="h-3.5 w-60 rounded-full" />
-        </div>
-        <Skeleton className="h-[260px] w-full rounded-2xl" />
-      </div>
-    ),
-  }
-);
 
 export default function DashboardPage() {
   const { isDemo, userName } = useFinanceData();
   const firstName = isDemo ? 'Lucas' : (userName.split(' ')[0] || 'Usuário');
 
   return (
-    <div className="space-y-6 animate-in fade-in duration-300">
+    <div className="space-y-6 animate-in fade-in-50 duration-150 ease-out will-change-[opacity]">
       {/* Top Greeting Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1 pb-2">
         <div>
