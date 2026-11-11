@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Settings,
   User,
@@ -11,16 +11,62 @@ import {
   RotateCcw,
   CheckCircle2,
   Lock,
+  Mail,
+  Smartphone,
+  Sparkles,
 } from 'lucide-react';
+import { toast } from 'sonner';
 
 export default function SettingsPage() {
   const [currency, setCurrency] = useState('BRL');
   const [workspace, setWorkspace] = useState('PERSONAL');
-  const [notifications, setNotifications] = useState(true);
   const [saved, setSaved] = useState(false);
 
+  // Canais & Notificações Granulares
+  const [inAppAlerts, setInAppAlerts] = useState(true);
+  const [emailBudgetAlerts, setEmailBudgetAlerts] = useState(true);
+  const [emailInvoiceAlerts, setEmailInvoiceAlerts] = useState(true);
+  const [emailWeeklyDigest, setEmailWeeklyDigest] = useState(false);
+  const [pushEnabled, setPushEnabled] = useState(false);
+
+  // Carrega preferências salvas
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const savedPrefs = localStorage.getItem('centrior_settings_notifications');
+        if (savedPrefs) {
+          const parsed = JSON.parse(savedPrefs);
+          if (parsed.inAppAlerts !== undefined) setInAppAlerts(parsed.inAppAlerts);
+          if (parsed.emailBudgetAlerts !== undefined) setEmailBudgetAlerts(parsed.emailBudgetAlerts);
+          if (parsed.emailInvoiceAlerts !== undefined) setEmailInvoiceAlerts(parsed.emailInvoiceAlerts);
+          if (parsed.emailWeeklyDigest !== undefined) setEmailWeeklyDigest(parsed.emailWeeklyDigest);
+          if (parsed.pushEnabled !== undefined) setPushEnabled(parsed.pushEnabled);
+        }
+      } catch (e) {
+        console.error('Erro ao ler preferências:', e);
+      }
+    }
+  }, []);
+
   const handleSave = () => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(
+          'centrior_settings_notifications',
+          JSON.stringify({
+            inAppAlerts,
+            emailBudgetAlerts,
+            emailInvoiceAlerts,
+            emailWeeklyDigest,
+            pushEnabled,
+          })
+        );
+      } catch (e) {
+        console.error('Erro ao salvar:', e);
+      }
+    }
     setSaved(true);
+    toast.success('Preferências salvas com sucesso!');
     setTimeout(() => setSaved(false), 2500);
   };
 
@@ -116,62 +162,161 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Security & Notifications Card */}
+        {/* Notifications & Communications Governance Card */}
         <div className="rounded-[28px] bg-white dark:bg-card p-6 border border-slate-100 dark:border-border shadow-xs space-y-5">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-xs">
-              <Shield className="h-5 w-5" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FF5722] text-white shadow-xs">
+              <Bell className="h-5 w-5" />
             </div>
             <div>
               <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                Segurança & Auditoria
+                Canais de Notificações & Alertas
               </h3>
               <p className="text-xs text-slate-400">
-                Controle de conciliação bancária, hashes e logs imutáveis.
+                Escolha onde e como receber seus avisos financeiros e de segurança.
               </p>
             </div>
           </div>
 
-          <div className="space-y-3 pt-2">
-            <div className="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-border">
-              <div className="flex items-center gap-3">
-                <Lock className="h-4 w-4 text-emerald-600" />
-                <div>
-                  <div className="text-xs font-bold text-slate-900 dark:text-white">
-                    Hash Anti-Duplicidade de OFX
-                  </div>
-                  <div className="text-[10px] text-slate-400">
-                    Gera SHA-256 exclusivo por transação
-                  </div>
-                </div>
-              </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
-                Ativo
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-border">
-              <div className="flex items-center gap-3">
+          <div className="space-y-3 pt-1">
+            {/* 1. Alertas no Site */}
+            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-border">
+              <div className="flex items-center gap-2.5">
                 <Bell className="h-4 w-4 text-[#FF5722]" />
                 <div>
                   <div className="text-xs font-bold text-slate-900 dark:text-white">
-                    Alertas de Faturas & Orçamentos
+                    Notificações no Site (In-App)
                   </div>
                   <div className="text-[10px] text-slate-400">
-                    Notificar quando uma categoria atingir 80% do teto
+                    Sino no topo e avisos visuais imediatos
                   </div>
                 </div>
               </div>
               <button
                 type="button"
-                onClick={() => setNotifications(!notifications)}
-                className={`w-11 h-6 rounded-full transition-colors relative p-0.5 ${
-                  notifications ? 'bg-[#FF5722]' : 'bg-slate-300'
+                onClick={() => setInAppAlerts(!inAppAlerts)}
+                className={`w-11 h-6 rounded-full transition-colors relative p-0.5 cursor-pointer ${
+                  inAppAlerts ? 'bg-[#FF5722]' : 'bg-slate-300'
                 }`}
               >
                 <div
                   className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${
-                    notifications ? 'translate-x-5' : 'translate-x-0'
+                    inAppAlerts ? 'translate-x-5' : 'translate-x-0'
+                  }`}
+                />
+              </button>
+            </div>
+
+            {/* 2. E-mail Faturas */}
+            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-border">
+              <div className="flex items-center gap-2.5">
+                <Mail className="h-4 w-4 text-amber-500" />
+                <div>
+                  <div className="text-xs font-bold text-slate-900 dark:text-white">
+                    Vencimento de Faturas por E-mail
+                  </div>
+                  <div className="text-[10px] text-slate-400">
+                    Aviso 3 dias antes do fechamento/vencimento
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setEmailInvoiceAlerts(!emailInvoiceAlerts)}
+                className={`w-11 h-6 rounded-full transition-colors relative p-0.5 cursor-pointer ${
+                  emailInvoiceAlerts ? 'bg-[#FF5722]' : 'bg-slate-300'
+                }`}
+              >
+                <div
+                  className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${
+                    emailInvoiceAlerts ? 'translate-x-5' : 'translate-x-0'
+                  }`}
+                />
+              </button>
+            </div>
+
+            {/* 3. E-mail Orçamentos */}
+            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-border">
+              <div className="flex items-center gap-2.5">
+                <Mail className="h-4 w-4 text-rose-500" />
+                <div>
+                  <div className="text-xs font-bold text-slate-900 dark:text-white">
+                    Estouro de Orçamento por E-mail
+                  </div>
+                  <div className="text-[10px] text-slate-400">
+                    Notificar ao atingir 80% e 100% do teto
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setEmailBudgetAlerts(!emailBudgetAlerts)}
+                className={`w-11 h-6 rounded-full transition-colors relative p-0.5 cursor-pointer ${
+                  emailBudgetAlerts ? 'bg-[#FF5722]' : 'bg-slate-300'
+                }`}
+              >
+                <div
+                  className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${
+                    emailBudgetAlerts ? 'translate-x-5' : 'translate-x-0'
+                  }`}
+                />
+              </button>
+            </div>
+
+            {/* 4. Resumo Semanal */}
+            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-border">
+              <div className="flex items-center gap-2.5">
+                <Sparkles className="h-4 w-4 text-purple-500" />
+                <div>
+                  <div className="text-xs font-bold text-slate-900 dark:text-white">
+                    Boletim do Copiloto IA (Semanal)
+                  </div>
+                  <div className="text-[10px] text-slate-400">
+                    Diagnóstico consolidado de receitas e poupança
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setEmailWeeklyDigest(!emailWeeklyDigest)}
+                className={`w-11 h-6 rounded-full transition-colors relative p-0.5 cursor-pointer ${
+                  emailWeeklyDigest ? 'bg-[#FF5722]' : 'bg-slate-300'
+                }`}
+              >
+                <div
+                  className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${
+                    emailWeeklyDigest ? 'translate-x-5' : 'translate-x-0'
+                  }`}
+                />
+              </button>
+            </div>
+
+            {/* 5. Mobile Push */}
+            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-border">
+              <div className="flex items-center gap-2.5">
+                <Smartphone className="h-4 w-4 text-blue-500" />
+                <div>
+                  <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                    <span>Notificações no Celular (Push)</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-sm bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">
+                      App Ready
+                    </span>
+                  </div>
+                  <div className="text-[10px] text-slate-400">
+                    Alertas instantâneos no futuro aplicativo móvel
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setPushEnabled(!pushEnabled)}
+                className={`w-11 h-6 rounded-full transition-colors relative p-0.5 cursor-pointer ${
+                  pushEnabled ? 'bg-[#FF5722]' : 'bg-slate-300'
+                }`}
+              >
+                <div
+                  className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${
+                    pushEnabled ? 'translate-x-5' : 'translate-x-0'
                   }`}
                 />
               </button>

@@ -17,9 +17,11 @@ import {
   Moon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useNotifications } from '@/features/notifications/notification-context';
 
 export function VerticalRail() {
   const pathname = usePathname();
+  const { unreadMessagesCount } = useNotifications();
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -51,7 +53,7 @@ export function VerticalRail() {
     { icon: FileText, href: '/transactions', label: 'Extrato' },
     { icon: CreditCard, href: '/credit-cards', label: 'Cartões' },
     { icon: Calendar, href: '/budgets', label: 'Orçamentos' },
-    { icon: Mail, href: '#', label: 'Mensagens' },
+    { icon: Mail, href: '/messages', label: 'Mensagens' },
     { icon: Users, href: '/accounts', label: 'Contas' },
     { icon: Settings, href: '/settings', label: 'Configurações' },
   ];
@@ -102,6 +104,9 @@ export function VerticalRail() {
               )}
             >
               <Icon className="h-5 w-5" />
+              {item.href === '/messages' && unreadMessagesCount > 0 && (
+                <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-[#FF5722] ring-2 ring-white dark:ring-card" />
+              )}
             </Link>
           );
         })}

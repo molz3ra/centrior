@@ -12,6 +12,7 @@ import {
   PieChart,
   Upload,
   Settings,
+  Mail,
   TrendingUp,
   X,
 } from 'lucide-react';
@@ -24,6 +25,7 @@ export const navigation = [
   { name: 'Cartões de Crédito', href: '/credit-cards', icon: CreditCard },
   { name: 'Contas & Bancos', href: '/accounts', icon: Wallet },
   { name: 'Orçamentos', href: '/budgets', icon: PieChart },
+  { name: 'Mensagens & Alertas', href: '/messages', icon: Mail },
   { name: 'Importar OFX/CSV', href: '/import', icon: Upload },
   { name: 'Configurações', href: '/settings', icon: Settings },
 ];

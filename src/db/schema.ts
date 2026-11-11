@@ -222,3 +222,83 @@ export const auditLogs = sqliteTable(
     index('idx_audit_logs_user').on(table.userId),
   ]
 );
+
+// ==============================================================================
+// 5. UNIFIED NOTIFICATIONS & MESSAGING SYSTEM
+// ==============================================================================
+
+// Alertas rápidos e notificações contextuais do usuário
+export const notifications = sqliteTable(
+  'notifications',
+  {
+    id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+    userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
+    type: text('type', {
+      enum: ['BUDGET_WARNING', 'INVOICE_DUE', 'SECURITY_ALERT', 'TRANSACTION_ALERT', 'AI_INSIGHT', 'SYSTEM'],
+    }).notNull(),
+    title: text('title').notNull(),
+    message: text('message').notNull(),
+    severity: text('severity', { enum: ['INFO', 'WARNING', 'CRITICAL', 'SUCCESS'] }).notNull().default('INFO'),
+    link: text('link'),
+    isRead: integer('is_read', { mode: 'boolean' }).notNull().default(false),
+    readAt: integer('read_at', { mode: 'timestamp' }),
+    metadata: text('metadata'),
+    createdAt: integer('created_at', { mode: 'timestamp' }).$defaultFn(() => new Date()).notNull(),
+  },
+  (table) => [
+    index('idx_notifications_user_id').on(table.userId),
+    index('idx_notifications_is_read').on(table.userId, table.isRead),
+  ]
+);
+
+// Caixa de mensagens e comunicados (/messages)
+export const messages = sqliteTable(
+  'messages',
+  {
+    id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+    userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
+    senderName: text('sender_name').notNull(),
+    senderRole: text('sender_role').notNull(),
+    subject: text('subject').notNull(),
+    preview: text('preview').notNull(),
+    content: text('content').notNull(),
+    category: text('category', { enum: ['INBOX', 'AI_ADVISOR', 'SECURITY', 'SYSTEM'] }).notNull().default('INBOX'),
+    isRead: integer('is_read', { mode: 'boolean' }).notNull().default(false),
+    isStarred: integer('is_starred', { mode: 'boolean' }).notNull().default(false),
+    createdAt: integer('created_at', { mode: 'timestamp' }).$defaultFn(() => new Date()).notNull(),
+  },
+  (table) => [
+    index('idx_messages_user_id').on(table.userId),
+    index('idx_messages_category').on(table.userId, table.category),
+  ]
+);
+
+// Preferências granulares de notificação por canal e evento
+export const notificationPreferences = sqliteTable('notification_preferences', {
+  userId: text('user_id').primaryKey().references(() => user.id, { onDelete: 'cascade' }),
+  emailBudgetAlerts: integer('email_budget_alerts', { mode: 'boolean' }).notNull().default(true),
+  emailInvoiceAlerts: integer('email_invoice_alerts', { mode: 'boolean' }).notNull().default(true),
+  emailWeeklyDigest: integer('email_weekly_digest', { mode: 'boolean' }).notNull().default(false),
+  emailSecurityAlerts: integer('email_security_alerts', { mode: 'boolean' }).notNull().default(true),
+  inAppAlerts: integer('in_app_alerts', { mode: 'boolean' }).notNull().default(true),
+  pushEnabled: integer('push_enabled', { mode: 'boolean' }).notNull().default(false),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }).$defaultFn(() => new Date()).notNull(),
+});
+
+// Assinaturas de Push Notification (Web Push e Mobile App Ready)
+export const pushSubscriptions = sqliteTable(
+  'push_subscriptions',
+  {
+    id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+    userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
+    platform: text('platform', { enum: ['WEB', 'IOS', 'ANDROID'] }).notNull(),
+    deviceToken: text('device_token').notNull(),
+    endpoint: text('endpoint'),
+    p256dhKey: text('p256dh_key'),
+    authKey: text('auth_key'),
+    createdAt: integer('created_at', { mode: 'timestamp' }).$defaultFn(() => new Date()).notNull(),
+  },
+  (table) => [
+    index('idx_push_subscriptions_user_id').on(table.userId),
+  ]
+);

@@ -19,6 +19,7 @@ import { cn } from '@/lib/utils';
 import { MobileDrawer } from '@/components/layout/sidebar';
 import { AiAdvisorDialog } from '@/components/dashboard/ai-advisor-dialog';
 import { CentriorLogo } from '@/components/brand/centrior-logo';
+import { NotificationPopover } from '@/components/layout/notification-popover';
 import { authClient } from '@/lib/auth-client';
 
 export function TopNavBar() {
@@ -127,14 +128,8 @@ export function TopNavBar() {
             <Search className="h-4 w-4" />
           </button>
 
-          {/* Notifications Button */}
-          <button
-            className="relative flex h-9 w-9 items-center justify-center rounded-full bg-white dark:bg-card border border-slate-200/70 dark:border-border text-slate-600 hover:text-slate-900 shadow-xs hover:shadow-sm transition-all shrink-0"
-            title="Notificações"
-          >
-            <Bell className="h-4 w-4" />
-            <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-[#FF5722]" />
-          </button>
+          {/* Notifications Popover */}
+          <NotificationPopover />
 
           {/* Info Button - Shown on extra large screens */}
           <button
