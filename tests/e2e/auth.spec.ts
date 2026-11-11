@@ -76,4 +76,38 @@ test.describe('Sistema de Autenticação Fintech (Centrior)', () => {
     // 3. Deve voltar para a tela de login
     await expect(page).toHaveURL(/\/login/);
   });
+
+  test('6. Novo cadastro de usuário real: dados iniciam 100% zerados', async ({ page }) => {
+    const timestamp = Date.now();
+    const email = `usuario.real.${timestamp}@empresa.com`;
+
+    await page.goto('/register');
+    await page.fill('input[placeholder="Lucas Silva"]', 'Carlos Eduardo');
+    await page.fill('input[placeholder="lucas@empresa.com"]', email);
+    await page.fill('input[placeholder="Mínimo 8 caracteres"]', 'SenhaForte123!');
+    await page.fill('input[placeholder="Repita sua senha"]', 'SenhaForte123!');
+    await page.check('input[type="checkbox"]');
+    await page.click('button[type="submit"]:has-text("Cadastrar e Criar Carteira")');
+
+    // Deve redirecionar para o dashboard
+    await expect(page).toHaveURL('/', { timeout: 15000 });
+
+    // 1. Saudação personalizada com o primeiro nome real
+    await expect(page.locator('text=Good morning, Carlos')).toBeVisible();
+
+    // 2. Banner de Demonstração NÃO deve aparecer para contas reais
+    await expect(page.locator('text=Modo Demonstração (Sandbox) Ativo')).not.toBeVisible();
+
+    // 3. Saldo e métricas iniciam estritamente ZERADOS (R$ 0,00)
+    await expect(page.locator('h2:has-text("R$ 0,00")')).toBeVisible();
+    await expect(page.locator('text=Nenhuma conta bancária conectada.')).toBeVisible();
+
+    // 4. Extrato inicia zerado com Empty State
+    await page.goto('/transactions');
+    await expect(page.locator('text=Nenhuma transação encontrada no seu extrato')).toBeVisible();
+
+    // 5. Contas iniciam zeradas com Empty State
+    await page.goto('/accounts');
+    await expect(page.locator('text=Nenhuma conta bancária cadastrada')).toBeVisible();
+  });
 });

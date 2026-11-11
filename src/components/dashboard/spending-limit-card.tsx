@@ -1,11 +1,18 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
+import { useFinanceData } from '@/features/finance/finance-context';
+import { centsToCurrency } from '@/lib/money';
 
 export function SpendingLimitCard() {
-  const spent = 1400;
-  const total = 5500;
-  const percentage = Math.round((spent / total) * 100);
+  const { isDemo, totalExpenseCents, budgets } = useFinanceData();
+
+  const totalBudgetCents = budgets.reduce((acc, b) => acc + (b.limitCents || 0), 0);
+
+  const spent = isDemo ? 1400 : Math.round(totalExpenseCents / 100);
+  const total = isDemo ? 5500 : Math.round(totalBudgetCents / 100);
+  const percentage = total > 0 ? Math.min(100, Math.round((spent / total) * 100)) : 0;
 
   return (
     <div className="rounded-[28px] bg-white dark:bg-card p-6 border border-slate-100 dark:border-border shadow-xs hover:shadow-md transition-shadow">
@@ -37,12 +44,16 @@ export function SpendingLimitCard() {
       <div className="flex items-center justify-between text-xs text-slate-500">
         <div>
           <span className="font-bold text-slate-900 dark:text-white">
-            R$ 1.400,00
+            {isDemo ? 'R$ 1.400,00' : centsToCurrency(totalExpenseCents)}
           </span>{' '}
           gastos de
         </div>
         <div className="font-bold text-slate-900 dark:text-white">
-          R$ 5.500,00
+          {isDemo ? 'R$ 5.500,00' : totalBudgetCents > 0 ? centsToCurrency(totalBudgetCents) : (
+            <Link href="/budgets" className="text-[#FF5722] hover:underline">
+              Definir limite
+            </Link>
+          )}
         </div>
       </div>
     </div>

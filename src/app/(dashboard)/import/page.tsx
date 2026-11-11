@@ -6,8 +6,11 @@ import { parseOFX, OFXTransaction } from '@/features/imports/ofx-parser';
 import { centsToCurrency } from '@/lib/money';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import Link from 'next/link';
+import { useFinanceData } from '@/features/finance/finance-context';
 
 export default function ImportPage() {
+  const { importOFXTransactions } = useFinanceData();
   const [transactions, setTransactions] = useState<OFXTransaction[]>([]);
   const [fileName, setFileName] = useState<string | null>(null);
   const [imported, setImported] = useState(false);
@@ -35,6 +38,7 @@ export default function ImportPage() {
   };
 
   const handleConfirmImport = () => {
+    importOFXTransactions(transactions);
     setImported(true);
   };
 
@@ -107,9 +111,18 @@ export default function ImportPage() {
                 <span>Confirmar Importação</span>
               </button>
             ) : (
-              <div className="flex items-center gap-2 text-xs font-bold text-emerald-600 bg-emerald-50 px-4 py-2 rounded-full">
-                <CheckCircle2 className="h-4 w-4" />
-                <span>Importação Concluída com Sucesso!</span>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 text-xs font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-4 py-2 rounded-full border border-emerald-500/20">
+                  <CheckCircle2 className="h-4 w-4" />
+                  <span>Importação Concluída com Sucesso!</span>
+                </div>
+                <Link
+                  href="/transactions"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-900 text-white dark:bg-primary dark:text-white text-xs font-semibold shadow-xs hover:opacity-90 transition-all"
+                >
+                  <span>Ver no Extrato</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
             )}
           </div>

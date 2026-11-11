@@ -1,7 +1,12 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { useDebounce } from '@/hooks/use-debounce';
+import { useFinanceData } from '@/features/finance/finance-context';
+import { centsToCurrency } from '@/lib/money';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import {
   Search,
   Filter,
@@ -14,13 +19,17 @@ import {
   CheckCircle2,
   Clock,
   AlertCircle,
+  Plus,
+  Upload,
+  Receipt,
 } from 'lucide-react';
 
 export function RecentActivitiesTable() {
+  const { isDemo, transactions, setIsAddTransactionOpen } = useFinanceData();
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search, 300);
 
-  const activities = [
+  const demoActivities = [
     {
       id: 'INV_000076',
       name: 'Assinatura App Mobile',
@@ -78,20 +87,45 @@ export function RecentActivitiesTable() {
     },
   ];
 
+  const activities = useMemo(() => {
+    if (isDemo) return demoActivities;
+
+    return transactions.slice(0, 10).map((tx) => ({
+      id: tx.id,
+      name: tx.description,
+      category: tx.category || tx.account || 'Geral',
+      icon: Receipt,
+      iconColor: tx.type === 'INCOME' ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-white',
+      price: `${tx.type === 'INCOME' ? '+ ' : '- '}${centsToCurrency(tx.amountCents)}`,
+      status: 'Confirmado',
+      statusType: 'success',
+      date: format(new Date(tx.date), "dd MMM, HH:mm", { locale: ptBR }),
+    }));
+  }, [isDemo, transactions]);
+
   const filtered = useMemo(() => {
     return activities.filter((act) =>
       act.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
       act.category.toLowerCase().includes(debouncedSearch.toLowerCase())
     );
-  }, [debouncedSearch]);
+  }, [activities, debouncedSearch]);
 
   return (
     <div className="rounded-[28px] bg-white dark:bg-card p-6 border border-slate-100 dark:border-border shadow-xs hover:shadow-md transition-shadow">
       {/* Table Header Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
-        <h3 className="text-base font-bold text-slate-900 dark:text-white">
-          Atividades Recentes
-        </h3>
+        <div className="flex items-center gap-2.5">
+          <h3 className="text-base font-bold text-slate-900 dark:text-white">
+            Atividades Recentes
+          </h3>
+          <button
+            onClick={() => setIsAddTransactionOpen(true)}
+            className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#FF5722] hover:opacity-85 transition-opacity cursor-pointer"
+          >
+            <Plus className="h-3 w-3" />
+            <span>Novo</span>
+          </button>
+        </div>
 
         <div className="flex items-center gap-2">
           {/* Search Input */}
@@ -102,7 +136,7 @@ export function RecentActivitiesTable() {
               placeholder="Buscar..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-8 pr-3 py-1.5 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-border text-xs focus:outline-none focus:ring-2 focus:ring-[#FF5722] w-32 sm:w-40 transition-all"
+              className="pl-8 pr-3 py-1.5 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-border text-xs focus:outline-hidden focus:ring-2 focus:ring-[#FF5722] w-32 sm:w-40 transition-all"
             />
           </div>
 
@@ -114,76 +148,105 @@ export function RecentActivitiesTable() {
         </div>
       </div>
 
-      {/* Table Content */}
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs">
-          <thead>
-            <tr className="border-b border-slate-100 dark:border-border text-[11px] font-semibold text-slate-400">
-              <th className="pb-3 pl-1 font-medium">Transação</th>
-              <th className="pb-3 font-medium">Valor</th>
-              <th className="pb-3 font-medium">Status</th>
-              <th className="pb-3 font-medium">Data</th>
-              <th className="pb-3 text-right font-medium"></th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-50 dark:divide-slate-800/60">
-            {filtered.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <tr key={idx} className="group hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
-                  <td className="py-3 pl-1">
-                    <div className="flex items-center gap-3">
-                      <div className={`flex h-8 w-8 items-center justify-center rounded-xl ${item.iconColor} shadow-xs shrink-0`}>
-                        <Icon className="h-4 w-4" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-slate-900 dark:text-white leading-tight">
-                          {item.name}
+      {activities.length > 0 ? (
+        /* Table Content */
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs">
+            <thead>
+              <tr className="border-b border-slate-100 dark:border-border text-[11px] font-semibold text-slate-400">
+                <th className="pb-3 pl-1 font-medium">Transação</th>
+                <th className="pb-3 font-medium">Valor</th>
+                <th className="pb-3 font-medium">Status</th>
+                <th className="pb-3 font-medium">Data</th>
+                <th className="pb-3 text-right font-medium"></th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-50 dark:divide-slate-800/60">
+              {filtered.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <tr key={idx} className="group hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
+                    <td className="py-3 pl-1">
+                      <div className="flex items-center gap-3">
+                        <div className={`flex h-8 w-8 items-center justify-center rounded-xl ${item.iconColor} shadow-xs shrink-0`}>
+                          <Icon className="h-4 w-4" />
                         </div>
-                        <div className="text-[10px] text-slate-400">
-                          {item.category}
+                        <div>
+                          <div className="font-semibold text-slate-900 dark:text-white leading-tight">
+                            {item.name}
+                          </div>
+                          <div className="text-[10px] text-slate-400">
+                            {item.category}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
+                    </td>
 
-                  <td className="py-3 font-bold text-slate-900 dark:text-white">
-                    {item.price}
-                  </td>
+                    <td className="py-3 font-bold text-slate-900 dark:text-white">
+                      {item.price}
+                    </td>
 
-                  <td className="py-3">
-                    <div className="flex items-center gap-1.5">
-                      <span
-                        className={`h-1.5 w-1.5 rounded-full ${
-                          item.statusType === 'success'
-                            ? 'bg-emerald-500'
-                            : item.statusType === 'warning'
-                            ? 'bg-amber-500'
-                            : 'bg-blue-500'
-                        }`}
-                      />
-                      <span className="text-[11px] font-medium text-slate-600 dark:text-slate-300">
-                        {item.status}
-                      </span>
-                    </div>
-                  </td>
+                    <td className="py-3">
+                      <div className="flex items-center gap-1.5">
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full ${
+                            item.statusType === 'success'
+                              ? 'bg-emerald-500'
+                              : item.statusType === 'warning'
+                              ? 'bg-amber-500'
+                              : 'bg-blue-500'
+                          }`}
+                        />
+                        <span className="text-[11px] font-medium text-slate-600 dark:text-slate-300">
+                          {item.status}
+                        </span>
+                      </div>
+                    </td>
 
-                  <td className="py-3 text-[11px] text-slate-400 whitespace-nowrap">
-                    {item.date}
-                  </td>
+                    <td className="py-3 text-[11px] text-slate-400 whitespace-nowrap">
+                      {item.date}
+                    </td>
 
-                  <td className="py-3 text-right">
-                    <button className="text-slate-400 hover:text-slate-700 p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-                      <MoreHorizontal className="h-4 w-4" />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+                    <td className="py-3 text-right">
+                      <button className="text-slate-400 hover:text-slate-700 p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="rounded-2xl border border-dashed border-slate-200 dark:border-border p-8 text-center">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 mx-auto mb-3">
+            <Receipt className="h-6 w-6 text-[#FF5722]" />
+          </div>
+          <h4 className="text-sm font-semibold text-slate-900 dark:text-white">
+            Nenhuma atividade recente registrada
+          </h4>
+          <p className="text-xs text-slate-400 max-w-sm mx-auto mt-1 mb-4">
+            Seu extrato está limpo. Comece adicionando um lançamento manual ou importe um extrato bancário .OFX/.CSV.
+          </p>
+          <div className="flex items-center justify-center gap-3">
+            <button
+              onClick={() => setIsAddTransactionOpen(true)}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:opacity-90 transition-opacity cursor-pointer"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              <span>Novo Lançamento</span>
+            </button>
+            <Link
+              href="/import"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200 transition-colors"
+            >
+              <Upload className="h-3.5 w-3.5" />
+              <span>Importar OFX</span>
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-

@@ -10,6 +10,7 @@ import { RecentActivitiesTable } from '@/components/dashboard/recent-activities-
 import { QuickSummaryCard } from '@/components/dashboard/quick-summary-card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Calendar } from 'lucide-react';
+import { useFinanceData } from '@/features/finance/finance-context';
 
 // Code Splitting com Skeleton para o Gráfico de Lucro & Prejuízo (Regra 22)
 const ProfitLossChart = dynamic(
@@ -29,16 +30,21 @@ const ProfitLossChart = dynamic(
 );
 
 export default function DashboardPage() {
+  const { isDemo, userName } = useFinanceData();
+  const firstName = isDemo ? 'Lucas' : (userName.split(' ')[0] || 'Usuário');
+
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
       {/* Top Greeting Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1 pb-2">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Good morning, Lucas 👋
+            Good morning, {firstName} 👋
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-            Acompanhe suas tarefas, monitore o progresso financeiro e valide seus status.
+            {isDemo
+              ? 'Acompanhe suas tarefas, monitore o progresso financeiro e valide seus status.'
+              : 'Seu painel patrimonial em tempo real. Adicione contas e extratos para começar.'}
           </p>
         </div>
 

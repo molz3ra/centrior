@@ -11,8 +11,22 @@ import {
   PieChart,
   DollarSign,
 } from 'lucide-react';
+import { useFinanceData } from '@/features/finance/finance-context';
+import { centsToCurrency } from '@/lib/money';
 
 export function KpiQuadGrid() {
+  const {
+    isDemo,
+    totalIncomeCents,
+    totalExpenseCents,
+    netIncomeCents,
+    savingsCents,
+    transactions,
+  } = useFinanceData();
+
+  const incomeCount = transactions.filter((t) => t.type === 'INCOME').length;
+  const expenseCount = transactions.filter((t) => t.type === 'EXPENSE').length;
+
   return (
     <div className="grid grid-cols-2 gap-3 sm:gap-4">
       {/* 1. Total Earnings (Hero Solid Coral Card) */}
@@ -27,12 +41,16 @@ export function KpiQuadGrid() {
         </div>
 
         <div>
-          <div className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">
-            R$ 14.850
+          <div className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2 truncate">
+            {isDemo ? 'R$ 14.850' : centsToCurrency(totalIncomeCents)}
           </div>
           <div className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-white/20 text-white">
             <ArrowUpRight className="h-3 w-3" />
-            <span>+7% este mês</span>
+            <span>
+              {isDemo
+                ? '+7% este mês'
+                : `${incomeCount} ${incomeCount === 1 ? 'entrada' : 'entradas'}`}
+            </span>
           </div>
         </div>
       </div>
@@ -49,12 +67,16 @@ export function KpiQuadGrid() {
         </div>
 
         <div>
-          <div className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2">
-            R$ 4.250
+          <div className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 truncate">
+            {isDemo ? 'R$ 4.250' : centsToCurrency(totalExpenseCents)}
           </div>
           <div className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-50 text-rose-600 dark:bg-rose-950/40 dark:text-rose-400">
             <ArrowDownRight className="h-3 w-3" />
-            <span>-5% este mês</span>
+            <span>
+              {isDemo
+                ? '-5% este mês'
+                : `${expenseCount} ${expenseCount === 1 ? 'saída' : 'saídas'}`}
+            </span>
           </div>
         </div>
       </div>
@@ -71,12 +93,12 @@ export function KpiQuadGrid() {
         </div>
 
         <div>
-          <div className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2">
-            R$ 10.600
+          <div className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 truncate">
+            {isDemo ? 'R$ 10.600' : centsToCurrency(netIncomeCents)}
           </div>
           <div className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400">
             <ArrowUpRight className="h-3 w-3" />
-            <span>+8% este mês</span>
+            <span>{isDemo ? '+8% este mês' : 'Resultado do período'}</span>
           </div>
         </div>
       </div>
@@ -93,12 +115,12 @@ export function KpiQuadGrid() {
         </div>
 
         <div>
-          <div className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2">
-            R$ 3.850
+          <div className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 truncate">
+            {isDemo ? 'R$ 3.850' : centsToCurrency(savingsCents)}
           </div>
           <div className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400">
             <ArrowUpRight className="h-3 w-3" />
-            <span>+4% este mês</span>
+            <span>{isDemo ? '+4% este mês' : 'Alocação patrimonial'}</span>
           </div>
         </div>
       </div>
