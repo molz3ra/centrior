@@ -162,12 +162,12 @@ export function AiAdvisorDialog({ isOpen, onClose }: AiAdvisorDialogProps) {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Pergunte sobre seus saldos, orçamentos ou faturas..."
               disabled={isStreaming}
-              className="flex-1 rounded-full bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-border px-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-[#FF5722] shadow-xs"
+              className="flex-1 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-border px-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-[#FF5722] shadow-xs"
             />
             <button
               type="submit"
               disabled={isStreaming || !input.trim()}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FF5722] text-white disabled:opacity-50 hover:opacity-90 shadow-xs transition-opacity"
+              className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FF5722] text-white disabled:opacity-50 hover:opacity-90 shadow-xs transition-opacity"
             >
               {isStreaming ? (
                 <Loader2 className="h-4 w-4 animate-spin" />

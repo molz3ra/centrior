@@ -83,7 +83,7 @@ export function DigitalCardsCard() {
           </p>
           <button
             onClick={() => setIsAddCardOpen(true)}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:opacity-90 transition-opacity cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:opacity-90 transition-opacity cursor-pointer"
           >
             <Plus className="h-3.5 w-3.5" />
             <span>Adicionar Primeiro Cartão</span>

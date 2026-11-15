@@ -88,7 +88,7 @@ export function HeroSection() {
               <button
                 onClick={handleInstantDemo}
                 disabled={isDemoLoading}
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-gradient-to-r from-orange-500 via-[#FF5722] to-amber-500 hover:from-orange-600 hover:to-[#F4511E] text-white text-sm font-bold shadow-xl shadow-[#FF5722]/25 hover:shadow-2xl hover:shadow-[#FF5722]/40 transition-[transform,box-shadow] hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-gradient-to-r from-orange-500 via-[#FF5722] to-amber-500 hover:from-orange-600 hover:to-[#F4511E] text-white text-sm font-bold shadow-xl shadow-[#FF5722]/25 hover:shadow-2xl hover:shadow-[#FF5722]/40 transition-[transform,box-shadow] hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
               >
                 {isDemoLoading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -100,7 +100,7 @@ export function HeroSection() {
 
               <Link
                 href="/register"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-semibold transition-[transform,background-color] hover:scale-[1.01] active:scale-[0.97]"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-semibold transition-[transform,background-color] hover:scale-[1.01] active:scale-[0.97]"
               >
                 <span>Criar Conta Corporativa</span>
                 <ArrowRight className="h-4 w-4 text-slate-400" />

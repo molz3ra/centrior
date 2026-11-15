@@ -101,39 +101,39 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
         </Link>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs font-medium text-slate-300">
+        <nav className="hidden md:flex items-center gap-1 lg:gap-2 px-3 py-1.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-xs font-medium text-slate-300">
           <a
             href="#recursos"
             onClick={(e) => handleNavClick(e, '#recursos')}
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             Recursos
           </a>
           <a
             href="#simulador"
             onClick={(e) => handleNavClick(e, '#simulador')}
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             Simulador OFX
           </a>
           <a
             href="#diferenciais"
             onClick={(e) => handleNavClick(e, '#diferenciais')}
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             Diferenciais
           </a>
           <a
             href="#seguranca"
             onClick={(e) => handleNavClick(e, '#seguranca')}
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             Segurança & LGPD
           </a>
           <a
             href="#faq"
             onClick={(e) => handleNavClick(e, '#faq')}
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             Dúvidas
           </a>
@@ -143,14 +143,14 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
         <div className="hidden sm:flex items-center gap-3">
           <Link
             href="/login"
-            className="px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 active:scale-[0.97] transition-all"
+            className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 active:scale-[0.97] transition-colors"
           >
             Entrar
           </Link>
           {isAuthenticated ? (
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-bold transition-all shadow-md shadow-[#FF5722]/20 hover:scale-[1.02] active:scale-[0.97]"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-bold transition-[transform,background-color] shadow-md shadow-[#FF5722]/20 hover:scale-[1.02] active:scale-[0.97]"
             >
               <span>Acessar meu Dashboard</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -159,7 +159,7 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
             <button
               onClick={handleInstantDemo}
               disabled={isDemoLoading}
-              className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-[#FF5722] hover:from-orange-600 hover:to-[#F4511E] text-white text-xs font-bold transition-all shadow-md shadow-[#FF5722]/25 hover:shadow-lg hover:shadow-[#FF5722]/40 hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
+              className="relative inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-[#FF5722] hover:from-orange-600 hover:to-[#F4511E] text-white text-xs font-bold transition-[transform,box-shadow] shadow-md shadow-[#FF5722]/25 hover:shadow-lg hover:shadow-[#FF5722]/40 hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
             >
               {isDemoLoading ? (
                 <Loader2 className="h-3.5 w-3.5 animate-spin" />

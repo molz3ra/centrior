@@ -143,7 +143,7 @@ export function LiveSimulator() {
             <button
               onClick={handleSimulate}
               disabled={isProcessing}
-              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-bold shadow-lg shadow-[#FF5722]/25 hover:scale-[1.02] active:scale-[0.97] transition-transform cursor-pointer shrink-0 disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-bold shadow-lg shadow-[#FF5722]/25 hover:scale-[1.02] active:scale-[0.97] transition-transform cursor-pointer shrink-0 disabled:opacity-50"
             >
               {isProcessing ? (
                 <>

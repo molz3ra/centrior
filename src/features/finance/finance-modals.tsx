@@ -200,13 +200,13 @@ export function FinanceModals() {
                 <button
                   type="button"
                   onClick={() => setIsAddAccountOpen(false)}
-                  className="px-4 py-2 rounded-full border border-slate-200 dark:border-border text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                  className="px-4 py-2 rounded-xl border border-slate-200 dark:border-border text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-full bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-semibold shadow-xs transition-colors"
+                  className="px-5 py-2 rounded-xl bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-semibold shadow-xs transition-colors"
                 >
                   Salvar Conta
                 </button>
@@ -342,13 +342,13 @@ export function FinanceModals() {
                 <button
                   type="button"
                   onClick={() => setIsAddTransactionOpen(false)}
-                  className="px-4 py-2 rounded-full border border-slate-200 dark:border-border text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                  className="px-4 py-2 rounded-xl border border-slate-200 dark:border-border text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-full bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-semibold shadow-xs transition-colors"
+                  className="px-5 py-2 rounded-xl bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-semibold shadow-xs transition-colors"
                 >
                   Confirmar Lançamento
                 </button>
@@ -449,13 +449,13 @@ export function FinanceModals() {
                 <button
                   type="button"
                   onClick={() => setIsAddCardOpen(false)}
-                  className="px-4 py-2 rounded-full border border-slate-200 dark:border-border text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                  className="px-4 py-2 rounded-xl border border-slate-200 dark:border-border text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-full bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-semibold shadow-xs transition-colors"
+                  className="px-5 py-2 rounded-xl bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-semibold shadow-xs transition-colors"
                 >
                   Salvar Cartão
                 </button>

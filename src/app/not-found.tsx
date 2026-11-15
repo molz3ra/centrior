@@ -68,14 +68,14 @@ export default function NotFound() {
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#FF5722] hover:bg-[#F4511E] text-white text-sm font-semibold shadow-sm transition-colors active:scale-98"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#FF5722] hover:bg-[#F4511E] text-white text-sm font-semibold shadow-sm transition-colors active:scale-98"
           >
             <ArrowLeft className="h-4 w-4" />
             <span>Retornar ao Painel Seguro</span>
           </Link>
           <Link
             href="/settings"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-card border border-slate-200 dark:border-border text-slate-700 dark:text-foreground text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-card border border-slate-200 dark:border-border text-slate-700 dark:text-foreground text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
           >
             <Settings className="h-4 w-4 text-slate-400" />
             <span>Suporte & Ajustes</span>

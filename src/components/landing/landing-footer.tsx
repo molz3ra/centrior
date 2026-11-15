@@ -62,14 +62,14 @@ export function LandingFooter() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/login"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-orange-500 to-[#FF5722] hover:from-orange-600 hover:to-[#F4511E] text-white text-xs font-bold shadow-lg shadow-[#FF5722]/30 hover:scale-[1.02] active:scale-[0.97] transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-orange-500 to-[#FF5722] hover:from-orange-600 hover:to-[#F4511E] text-white text-xs font-bold shadow-lg shadow-[#FF5722]/30 hover:scale-[1.02] active:scale-[0.97] transition-[transform,box-shadow]"
           >
             <Sparkles className="h-3.5 w-3.5" />
             <span>Testar no Modo Demonstração</span>
           </Link>
           <Link
             href="/register"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-semibold hover:scale-[1.01] active:scale-[0.97] transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-semibold hover:scale-[1.01] active:scale-[0.97] transition-[transform,background-color]"
           >
             <span>Criar Conta Corporativa</span>
             <ArrowRight className="h-3.5 w-3.5 text-slate-400" />

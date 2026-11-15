@@ -105,20 +105,20 @@ export default function ImportPage() {
             {!imported ? (
               <button
                 onClick={handleConfirmImport}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FF5722] text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-all"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FF5722] text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-all"
               >
                 <CheckCircle2 className="h-4 w-4" />
                 <span>Confirmar Importação</span>
               </button>
             ) : (
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 text-xs font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-4 py-2 rounded-full border border-emerald-500/20">
+                <div className="flex items-center gap-2 text-xs font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-4 py-2 rounded-xl border border-emerald-500/20">
                   <CheckCircle2 className="h-4 w-4" />
                   <span>Importação Concluída com Sucesso!</span>
                 </div>
                 <Link
                   href="/transactions"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-900 text-white dark:bg-primary dark:text-white text-xs font-semibold shadow-xs hover:opacity-90 transition-all"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-primary dark:text-white text-xs font-semibold shadow-xs hover:opacity-90 transition-all"
                 >
                   <span>Ver no Extrato</span>
                   <ArrowRight className="h-3.5 w-3.5" />

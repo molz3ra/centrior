@@ -35,7 +35,7 @@ export default function AccountsPage() {
 
         <button
           onClick={() => setIsAddAccountOpen(true)}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 text-white dark:bg-primary dark:text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-all self-start sm:self-auto cursor-pointer"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-primary dark:text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-colors self-start sm:self-auto cursor-pointer"
         >
           <Plus className="h-4 w-4" />
           <span>Nova Conta</span>
@@ -130,7 +130,7 @@ export default function AccountsPage() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setIsAddAccountOpen(true)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors cursor-pointer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors cursor-pointer"
                     >
                       <ArrowDownLeft className="h-3.5 w-3.5" />
                       <span>Editar</span>
@@ -154,7 +154,7 @@ export default function AccountsPage() {
           </p>
           <button
             onClick={() => setIsAddAccountOpen(true)}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FF5722] text-white text-xs font-bold shadow-md hover:bg-[#F4511E] transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FF5722] text-white text-xs font-bold shadow-md hover:bg-[#F4511E] transition-colors cursor-pointer"
           >
             <Plus className="h-4 w-4" />
             <span>Cadastrar Primeira Conta</span>
