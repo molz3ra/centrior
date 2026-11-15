@@ -90,7 +90,7 @@ export function LiveSimulator() {
   };
 
   return (
-    <section id="simulador" className="relative py-8 sm:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="simulador" className="relative py-8 sm:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
       {/* Decorative hairline anchor */}
       <div className="w-full border-t border-white/[0.06] mb-8 sm:mb-10" />
 

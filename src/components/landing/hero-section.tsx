@@ -28,7 +28,7 @@ export function HeroSection() {
   };
 
   return (
-    <section id="diferenciais" className="relative pt-24 sm:pt-32 pb-10 sm:pb-12 overflow-visible">
+    <section id="diferenciais" className="relative pt-24 sm:pt-32 pb-10 sm:pb-12 overflow-visible scroll-mt-20">
       {/* Dynamic Background Radiance */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-tr from-[#FF5722]/15 via-orange-600/10 to-transparent blur-[140px] pointer-events-none rounded-full" />
       <div className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-amber-500/10 blur-[130px] pointer-events-none rounded-full" />

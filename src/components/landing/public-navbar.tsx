@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { CentriorLogo } from '@/components/brand/centrior-logo';
 import { Sparkles, Menu, X, ArrowRight, Loader2, ShieldCheck } from 'lucide-react';
 
@@ -12,6 +12,7 @@ interface PublicNavbarProps {
 
 export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isDemoLoading, setIsDemoLoading] = useState(false);
@@ -23,6 +24,46 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    setIsMobileOpen(false);
+
+    if (pathname !== '/') {
+      router.push(`/${targetId}`);
+      return;
+    }
+
+    const element = document.querySelector(targetId);
+    if (element) {
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(element, {
+          offset: -80,
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+      } else {
+        const top = element.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+      window.history.pushState(null, '', targetId);
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === '/') {
+      e.preventDefault();
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(0, {
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      window.history.pushState(null, '', '/');
+    }
+  };
 
   const handleInstantDemo = async () => {
     setIsDemoLoading(true);
@@ -51,7 +92,11 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2 group transition-transform hover:scale-[1.01]">
+        <Link
+          href="/"
+          onClick={handleLogoClick}
+          className="flex items-center gap-2 group transition-transform hover:scale-[1.01]"
+        >
           <CentriorLogo size="md" variant="full" />
         </Link>
 
@@ -59,31 +104,36 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
         <nav className="hidden md:flex items-center gap-1 lg:gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs font-medium text-slate-300">
           <a
             href="#recursos"
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            onClick={(e) => handleNavClick(e, '#recursos')}
+            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             Recursos
           </a>
           <a
             href="#simulador"
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            onClick={(e) => handleNavClick(e, '#simulador')}
+            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             Simulador OFX
           </a>
           <a
             href="#diferenciais"
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            onClick={(e) => handleNavClick(e, '#diferenciais')}
+            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             Diferenciais
           </a>
           <a
             href="#seguranca"
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            onClick={(e) => handleNavClick(e, '#seguranca')}
+            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             Segurança & LGPD
           </a>
           <a
             href="#faq"
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            onClick={(e) => handleNavClick(e, '#faq')}
+            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             Dúvidas
           </a>
@@ -137,36 +187,36 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
           <nav className="flex flex-col gap-1 text-sm text-slate-300">
             <a
               href="#recursos"
-              onClick={() => setIsMobileOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white"
+              onClick={(e) => handleNavClick(e, '#recursos')}
+              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white cursor-pointer"
             >
               Recursos
             </a>
             <a
               href="#simulador"
-              onClick={() => setIsMobileOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white"
+              onClick={(e) => handleNavClick(e, '#simulador')}
+              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white cursor-pointer"
             >
               Simulador OFX
             </a>
             <a
               href="#diferenciais"
-              onClick={() => setIsMobileOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white"
+              onClick={(e) => handleNavClick(e, '#diferenciais')}
+              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white cursor-pointer"
             >
               Diferenciais
             </a>
             <a
               href="#seguranca"
-              onClick={() => setIsMobileOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white"
+              onClick={(e) => handleNavClick(e, '#seguranca')}
+              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white cursor-pointer"
             >
               Segurança & LGPD
             </a>
             <a
               href="#faq"
-              onClick={() => setIsMobileOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white"
+              onClick={(e) => handleNavClick(e, '#faq')}
+              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white cursor-pointer"
             >
               Dúvidas Frequentes
             </a>

@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import 'lenis/dist/lenis.css';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { WebVitalsReporter } from '@/components/analytics/web-vitals';
 import { CookieConsentBanner } from '@/components/layout/cookie-consent-banner';
 import { ScrollReset } from '@/components/layout/scroll-reset';
+import { SmoothScroll } from '@/components/layout/smooth-scroll';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -128,7 +130,7 @@ export default function RootLayout({
       <body className={cn('min-h-screen bg-background font-sans antialiased text-foreground', inter.className)}>
         <ScrollReset />
         <WebVitalsReporter />
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
         <CookieConsentBanner />
       </body>
     </html>

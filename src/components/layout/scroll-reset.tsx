@@ -13,6 +13,9 @@ export function ScrollReset() {
           window.history.scrollRestoration = 'manual';
         }
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        if ((window as any).lenis) {
+          (window as any).lenis.scrollTo(0, { immediate: true });
+        }
       } catch (_) {}
     }
   }, [pathname]);

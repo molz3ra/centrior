@@ -2,10 +2,53 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { CentriorLogo } from '@/components/brand/centrior-logo';
 import { ShieldCheck, ArrowRight, Sparkles } from 'lucide-react';
 
 export function LandingFooter() {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+
+    if (pathname !== '/') {
+      router.push(`/${targetId}`);
+      return;
+    }
+
+    const element = document.querySelector(targetId);
+    if (element) {
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(element, {
+          offset: -80,
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+      } else {
+        const top = element.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+      window.history.pushState(null, '', targetId);
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === '/') {
+      e.preventDefault();
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(0, {
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      window.history.pushState(null, '', '/');
+    }
+  };
+
   return (
     <footer className="mt-8 sm:mt-12 border-t border-white/10 bg-[#05070B] text-slate-400 text-xs">
       {/* Pre-Footer Call to Action Strip */}
@@ -37,7 +80,9 @@ export function LandingFooter() {
       {/* Main Footer Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 border-t border-white/5 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="md:col-span-2 space-y-3">
-          <CentriorLogo size="md" variant="full" />
+          <Link href="/" onClick={handleLogoClick} className="inline-block transition-transform hover:scale-[1.01]">
+            <CentriorLogo size="md" variant="full" />
+          </Link>
           <p className="text-xs text-slate-400 leading-relaxed max-w-md">
             Centrior Tecnologia Financeira Ltda. • CNPJ: 45.892.103/0001-44 • Av. Paulista, 1106, 14º Andar, Bela Vista, São Paulo - SP, CEP 01310-100.
           </p>
@@ -49,11 +94,51 @@ export function LandingFooter() {
         <div className="space-y-2">
           <p className="text-xs font-bold text-white uppercase tracking-wider">Navegação</p>
           <ul className="space-y-1.5 text-xs">
-            <li><a href="#recursos" className="hover:text-white transition-colors">Recursos do Sistema</a></li>
-            <li><a href="#simulador" className="hover:text-white transition-colors">Simulador OFX</a></li>
-            <li><a href="#diferenciais" className="hover:text-white transition-colors">Diferenciais Técnicos</a></li>
-            <li><a href="#seguranca" className="hover:text-white transition-colors">Segurança & LGPD</a></li>
-            <li><a href="#faq" className="hover:text-white transition-colors">Dúvidas Frequentes</a></li>
+            <li>
+              <a
+                href="#recursos"
+                onClick={(e) => handleNavClick(e, '#recursos')}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
+                Recursos do Sistema
+              </a>
+            </li>
+            <li>
+              <a
+                href="#simulador"
+                onClick={(e) => handleNavClick(e, '#simulador')}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
+                Simulador OFX
+              </a>
+            </li>
+            <li>
+              <a
+                href="#diferenciais"
+                onClick={(e) => handleNavClick(e, '#diferenciais')}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
+                Diferenciais Técnicos
+              </a>
+            </li>
+            <li>
+              <a
+                href="#seguranca"
+                onClick={(e) => handleNavClick(e, '#seguranca')}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
+                Segurança & LGPD
+              </a>
+            </li>
+            <li>
+              <a
+                href="#faq"
+                onClick={(e) => handleNavClick(e, '#faq')}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
+                Dúvidas Frequentes
+              </a>
+            </li>
           </ul>
         </div>
 
