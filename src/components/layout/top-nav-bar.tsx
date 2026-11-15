@@ -59,7 +59,7 @@ export function TopNavBar() {
     .toUpperCase() || 'LC';
 
   const navLinks = [
-    { name: 'Visão Geral', href: '/' },
+    { name: 'Visão Geral', href: '/dashboard' },
     { name: 'Extrato', href: '/transactions' },
     { name: 'Cartões', href: '/credit-cards' },
     { name: 'Contas', href: '/accounts' },
@@ -81,7 +81,7 @@ export function TopNavBar() {
             <Menu className="h-5 w-5" />
           </button>
           
-          <Link href="/" className="flex items-center shrink-0">
+          <Link href="/dashboard" className="flex items-center shrink-0">
             <CentriorLogo size="md" />
           </Link>
         </div>
@@ -89,7 +89,10 @@ export function TopNavBar() {
         {/* Center: Floating Navigation Pills */}
         <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1 bg-white dark:bg-card p-1 rounded-full border border-slate-200/70 dark:border-border shadow-xs shrink-0">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+            const isActive =
+              link.href === '/dashboard'
+                ? pathname === '/dashboard' || pathname === '/'
+                : pathname.startsWith(link.href);
             return (
               <Link
                 key={link.name}
@@ -178,6 +181,15 @@ export function TopNavBar() {
                     </span>
                   )}
                 </div>
+
+                <Link
+                  href="/?public=true"
+                  onClick={() => setIsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                >
+                  <Sparkles className="h-3.5 w-3.5 text-[#FF5722]" />
+                  <span>Ver Página Inicial (Apresentação)</span>
+                </Link>
 
                 <Link
                   href="/settings"

@@ -20,7 +20,7 @@ import { cn } from '@/lib/utils';
 import { CentriorLogo } from '@/components/brand/centrior-logo';
 
 export const navigation = [
-  { name: 'Visão Geral', href: '/', icon: LayoutDashboard },
+  { name: 'Visão Geral', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Extrato', href: '/transactions', icon: Receipt },
   { name: 'Cartões de Crédito', href: '/credit-cards', icon: CreditCard },
   { name: 'Contas & Bancos', href: '/accounts', icon: Wallet },
@@ -36,14 +36,17 @@ export function Sidebar() {
   return (
     <aside className="hidden md:flex md:w-64 md:flex-col border-r border-border bg-card shrink-0">
       <div className="flex h-16 items-center px-6 border-b border-border">
-        <Link href="/">
+        <Link href="/dashboard">
           <CentriorLogo size="sm" />
         </Link>
       </div>
       <div className="flex flex-1 flex-col overflow-y-auto px-4 py-6">
         <nav className="space-y-1.5">
           {navigation.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive =
+              item.href === '/dashboard'
+                ? pathname === '/dashboard' || pathname === '/'
+                : pathname.startsWith(item.href);
             const Icon = item.icon;
             return (
               <Link

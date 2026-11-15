@@ -33,6 +33,8 @@ local.db
 graphify-out/
 .claude/
 .impeccable/
+.references/
+/*.png
 
 # OS / Editor files
 .DS_Store

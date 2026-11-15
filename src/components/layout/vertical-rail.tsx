@@ -49,7 +49,7 @@ export function VerticalRail() {
   };
 
   const navItems = [
-    { icon: LayoutGrid, href: '/', label: 'Visão Geral' },
+    { icon: LayoutGrid, href: '/dashboard', label: 'Visão Geral' },
     { icon: FileText, href: '/transactions', label: 'Extrato' },
     { icon: CreditCard, href: '/credit-cards', label: 'Cartões' },
     { icon: Calendar, href: '/budgets', label: 'Orçamentos' },
@@ -89,7 +89,10 @@ export function VerticalRail() {
       {/* Center: Navigation Icons */}
       <nav className="flex flex-col items-center gap-3">
         {navItems.map((item, idx) => {
-          const isActive = pathname === item.href;
+          const isActive =
+            item.href === '/dashboard'
+              ? pathname === '/dashboard' || pathname === '/'
+              : pathname.startsWith(item.href);
           const Icon = item.icon;
           return (
             <Link

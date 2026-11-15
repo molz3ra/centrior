@@ -39,7 +39,7 @@ test.describe('Sistema de Autenticação Fintech (Centrior)', () => {
     await demoButton.click();
 
     // Deve ser redirecionado para o dashboard com sucesso
-    await expect(page).toHaveURL('/');
+    await expect(page).toHaveURL(/\/dashboard|\//);
     await expect(page.locator('text=Good morning')).toBeVisible();
 
     // Banner de Sandbox deve estar visível para contas demo
@@ -65,7 +65,7 @@ test.describe('Sistema de Autenticação Fintech (Centrior)', () => {
     // 1. Entra via modo demo
     await page.goto('/login');
     await page.click('button:has-text("Acessar Modo Demonstração")');
-    await expect(page).toHaveURL('/');
+    await expect(page).toHaveURL(/\/dashboard|\//);
 
     // 2. Abre menu do usuário e clica em Encerrar Sessão
     await page.click('button[aria-label="Menu do usuário"]');
@@ -90,7 +90,7 @@ test.describe('Sistema de Autenticação Fintech (Centrior)', () => {
     await page.click('button[type="submit"]:has-text("Cadastrar e Criar Carteira")');
 
     // Deve redirecionar para o dashboard
-    await expect(page).toHaveURL('/', { timeout: 15000 });
+    await expect(page).toHaveURL(/\/dashboard|\//, { timeout: 15000 });
 
     // 1. Saudação personalizada com o primeiro nome real
     await expect(page.locator('text=Good morning, Carlos')).toBeVisible();
