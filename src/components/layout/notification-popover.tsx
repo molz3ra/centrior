@@ -75,7 +75,7 @@ export function NotificationPopover() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'relative flex h-9 w-9 items-center justify-center rounded-full bg-white dark:bg-card border border-slate-200/70 dark:border-border text-slate-600 hover:text-slate-900 shadow-xs hover:shadow-sm transition-all shrink-0 cursor-pointer',
+          'relative flex h-9 w-9 items-center justify-center rounded-lg bg-white dark:bg-card border border-slate-200/70 dark:border-border text-slate-600 hover:text-slate-900 shadow-xs hover:shadow-sm transition-all shrink-0 cursor-pointer',
           isOpen && 'border-[#FF5722] text-[#FF5722]'
         )}
         title="Central de Notificações"
@@ -120,7 +120,7 @@ export function NotificationPopover() {
             <button
               onClick={() => setActiveTab('ALL')}
               className={cn(
-                'px-2.5 py-1 rounded-full font-medium transition-colors',
+                'px-2.5 py-1 rounded-lg font-medium transition-colors',
                 activeTab === 'ALL'
                   ? 'bg-slate-900 text-white dark:bg-primary dark:text-white'
                   : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -131,7 +131,7 @@ export function NotificationPopover() {
             <button
               onClick={() => setActiveTab('UNREAD')}
               className={cn(
-                'px-2.5 py-1 rounded-full font-medium transition-colors',
+                'px-2.5 py-1 rounded-lg font-medium transition-colors',
                 activeTab === 'UNREAD'
                   ? 'bg-slate-900 text-white dark:bg-primary dark:text-white'
                   : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -142,7 +142,7 @@ export function NotificationPopover() {
             <button
               onClick={() => setActiveTab('FINANCIAL')}
               className={cn(
-                'px-2.5 py-1 rounded-full font-medium transition-colors',
+                'px-2.5 py-1 rounded-lg font-medium transition-colors',
                 activeTab === 'FINANCIAL'
                   ? 'bg-slate-900 text-white dark:bg-primary dark:text-white'
                   : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'

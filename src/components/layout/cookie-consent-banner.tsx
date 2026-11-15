@@ -50,13 +50,13 @@ export function CookieConsentBanner() {
         <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
           <button
             onClick={() => handleAccept('essential')}
-            className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+            className="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
           >
             Apenas Essenciais
           </button>
           <button
             onClick={() => handleAccept('all')}
-            className="px-4 py-1.5 rounded-full bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:opacity-90 active:scale-98 transition-all"
+            className="px-4 py-1.5 rounded-lg bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:opacity-90 active:scale-98 transition-all"
           >
             Aceitar Todos
           </button>

@@ -107,7 +107,7 @@ function LoginFormContent() {
           type="button"
           onClick={handleDemoLogin}
           disabled={isDemoLoading || isLoading}
-          className="w-full bg-[#FF5722] hover:bg-[#F4511E] text-white rounded-xl h-10 text-xs font-bold shadow-md transition-all flex items-center justify-center gap-2"
+          className="w-full bg-[#FF5722] hover:bg-[#F4511E] text-white rounded-lg h-10 text-xs font-bold shadow-md transition-all flex items-center justify-center gap-2"
         >
           {isDemoLoading ? (
             <>
@@ -198,7 +198,7 @@ function LoginFormContent() {
         <Button
           type="submit"
           disabled={isLoading || isDemoLoading}
-          className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-primary dark:hover:bg-primary/90 text-white rounded-xl h-11 text-xs font-bold shadow-md transition-all flex items-center justify-center gap-2"
+          className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-primary dark:hover:bg-primary/90 text-white rounded-lg h-11 text-xs font-bold shadow-md transition-all flex items-center justify-center gap-2"
         >
           {isLoading ? (
             <>

@@ -111,7 +111,7 @@ export default function MessagesPage() {
 
         <button
           onClick={() => setIsAiOpen(true)}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FF5722] text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-all self-start sm:self-auto cursor-pointer"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FF5722] text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-all self-start sm:self-auto cursor-pointer"
         >
           <Sparkles className="h-4 w-4" />
           <span>Falar com o Copiloto IA</span>

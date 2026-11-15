@@ -44,12 +44,12 @@ export function HeroSection() {
           <div className="lg:col-span-6 flex flex-col items-start text-left space-y-5">
             {/* Badges Técnicos de Autoridade */}
             <div className="flex flex-wrap items-center gap-2.5">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 text-[11px] font-mono text-slate-200 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-black/60 border border-white/10 text-[11px] font-mono text-slate-200 backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
                 <span>0 centavos divergentes</span>
               </div>
 
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 text-[11px] font-mono text-slate-200 backdrop-blur-md">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-black/60 border border-white/10 text-[11px] font-mono text-slate-200 backdrop-blur-md">
                 <Zap className="w-3.5 h-3.5 text-primary" />
                 <span>50K lançamentos a 60 FPS</span>
               </div>
@@ -72,7 +72,7 @@ export function HeroSection() {
           {/* LADO DIREITO: Ingestão OFX, Parágrafo & Botões de Ação */}
           <div className="lg:col-span-6 flex flex-col items-start text-left space-y-6 lg:pl-4">
             {/* Sub-Headline Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-white/5 border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-md">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF5722]" />
               <span>Ingestão bancária OFX em &lt; 42ms com auditoria contábil</span>
             </div>
@@ -88,7 +88,7 @@ export function HeroSection() {
               <button
                 onClick={handleInstantDemo}
                 disabled={isDemoLoading}
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-gradient-to-r from-orange-500 via-[#FF5722] to-amber-500 hover:from-orange-600 hover:to-[#F4511E] text-white text-sm font-bold shadow-xl shadow-[#FF5722]/25 hover:shadow-2xl hover:shadow-[#FF5722]/40 transition-[transform,box-shadow] hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-lg bg-gradient-to-r from-orange-500 via-[#FF5722] to-amber-500 hover:from-orange-600 hover:to-[#F4511E] text-white text-sm font-bold shadow-xl shadow-[#FF5722]/25 hover:shadow-2xl hover:shadow-[#FF5722]/40 transition-[transform,box-shadow] hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
               >
                 {isDemoLoading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -100,7 +100,7 @@ export function HeroSection() {
 
               <Link
                 href="/register"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-semibold transition-[transform,background-color] hover:scale-[1.01] active:scale-[0.97]"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-semibold transition-[transform,background-color] hover:scale-[1.01] active:scale-[0.97]"
               >
                 <span>Criar Conta Corporativa</span>
                 <ArrowRight className="h-4 w-4 text-slate-400" />
@@ -133,7 +133,7 @@ export function HeroSection() {
                 <span className="text-3xl sm:text-5xl font-black tracking-tighter opacity-90 font-mono">
                   01
                 </span>
-                <span className="px-2.5 py-1 rounded-full bg-black/20 text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs font-mono">
+                <span className="px-2.5 py-1 rounded-md bg-black/20 text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs font-mono">
                   Zero Erro Float
                 </span>
               </div>
@@ -154,7 +154,7 @@ export function HeroSection() {
                 <span className="text-3xl sm:text-5xl font-black tracking-tighter text-slate-500 font-mono">
                   02
                 </span>
-                <span className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-slate-300">
+                <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-slate-300">
                   60 FPS
                 </span>
               </div>
@@ -175,7 +175,7 @@ export function HeroSection() {
                 <span className="text-3xl sm:text-5xl font-black tracking-tighter text-slate-300 font-mono">
                   03
                 </span>
-                <span className="px-2.5 py-1 rounded-full bg-black/5 text-[10px] font-bold uppercase tracking-wider text-slate-700 font-mono">
+                <span className="px-2.5 py-1 rounded-md bg-black/5 text-[10px] font-bold uppercase tracking-wider text-slate-700 font-mono">
                   OFX + CSV
                 </span>
               </div>
@@ -198,7 +198,7 @@ export function HeroSection() {
                 <span className="text-3xl sm:text-5xl font-black tracking-tighter text-[#FF5722] font-mono">
                   04
                 </span>
-                <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#FF5722]/10 border border-[#FF5722]/30 text-[10px] font-bold text-[#FF5722] uppercase tracking-wider font-mono">
+                <div className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#FF5722]/10 border border-[#FF5722]/30 text-[10px] font-bold text-[#FF5722] uppercase tracking-wider font-mono">
                   <Sparkles className="h-3 w-3" />
                   <span>AI CFO Ativo</span>
                 </div>

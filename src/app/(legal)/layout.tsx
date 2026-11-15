@@ -27,7 +27,7 @@ export default function LegalLayout({
             </Link>
             <Link
               href="/register"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold bg-[#FF5722] hover:bg-[#F4511E] text-white px-4 py-2 rounded-xl shadow-xs transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold bg-[#FF5722] hover:bg-[#F4511E] text-white px-4 py-2 rounded-lg shadow-xs transition-colors"
             >
               <span>Criar Conta</span>
               <ArrowRight className="h-3 w-3" />

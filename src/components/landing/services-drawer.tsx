@@ -105,7 +105,7 @@ export function ServicesDrawer() {
               <button
                 key={item.id}
                 onClick={() => setActiveIdx(idx)}
-                className={`w-full text-left p-4 rounded-2xl transition-colors duration-150 active:scale-[0.98] cursor-pointer flex items-center justify-between border ${
+                className={`w-full text-left p-4 rounded-xl transition-colors duration-150 active:scale-[0.98] cursor-pointer flex items-center justify-between border ${
                   isSelected
                     ? 'bg-white/10 border-white/20 shadow-xl'
                     : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/10 text-slate-400'
@@ -133,7 +133,7 @@ export function ServicesDrawer() {
 
                 <div className="flex items-center gap-2 pl-3">
                   <span
-                    className={`text-[10px] font-mono px-2 py-0.5 rounded-full uppercase tracking-wider ${
+                    className={`text-[10px] font-mono px-2 py-0.5 rounded-md uppercase tracking-wider ${
                       isSelected
                         ? 'bg-[#FF5722]/20 text-[#FF5722] border border-[#FF5722]/30'
                         : 'bg-white/5 text-slate-500'

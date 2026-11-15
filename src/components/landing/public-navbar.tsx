@@ -101,7 +101,7 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
         </Link>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2 px-3 py-1.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-xs font-medium text-slate-300">
+        <nav className="hidden md:flex items-center gap-1 lg:gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md text-xs font-medium text-slate-300">
           <a
             href="#recursos"
             onClick={(e) => handleNavClick(e, '#recursos')}
@@ -143,14 +143,14 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
         <div className="hidden sm:flex items-center gap-3">
           <Link
             href="/login"
-            className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 active:scale-[0.97] transition-colors"
+            className="px-4 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 active:scale-[0.97] transition-colors"
           >
             Entrar
           </Link>
           {isAuthenticated ? (
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-bold transition-[transform,background-color] shadow-md shadow-[#FF5722]/20 hover:scale-[1.02] active:scale-[0.97]"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-bold transition-[transform,background-color] shadow-md shadow-[#FF5722]/20 hover:scale-[1.02] active:scale-[0.97]"
             >
               <span>Acessar meu Dashboard</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -159,7 +159,7 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
             <button
               onClick={handleInstantDemo}
               disabled={isDemoLoading}
-              className="relative inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-[#FF5722] hover:from-orange-600 hover:to-[#F4511E] text-white text-xs font-bold transition-[transform,box-shadow] shadow-md shadow-[#FF5722]/25 hover:shadow-lg hover:shadow-[#FF5722]/40 hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
+              className="relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500 to-[#FF5722] hover:from-orange-600 hover:to-[#F4511E] text-white text-xs font-bold transition-[transform,box-shadow] shadow-md shadow-[#FF5722]/25 hover:shadow-lg hover:shadow-[#FF5722]/40 hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
             >
               {isDemoLoading ? (
                 <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -174,7 +174,7 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
         {/* Mobile Menu Toggle Button */}
         <button
           onClick={() => setIsMobileOpen(!isMobileOpen)}
-          className="md:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+          className="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
           aria-label="Alternar menu de navegação"
         >
           {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -227,7 +227,7 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
               <Link
                 href="/dashboard"
                 onClick={() => setIsMobileOpen(false)}
-                className="w-full text-center py-2.5 rounded-xl bg-[#FF5722] text-white text-xs font-bold"
+                className="w-full text-center py-2.5 rounded-lg bg-[#FF5722] text-white text-xs font-bold"
               >
                 Acessar meu Dashboard
               </Link>
@@ -238,7 +238,7 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
                     setIsMobileOpen(false);
                     handleInstantDemo();
                   }}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#FF5722] text-white text-xs font-bold shadow-md shadow-[#FF5722]/30"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#FF5722] text-white text-xs font-bold shadow-md shadow-[#FF5722]/30"
                 >
                   <Sparkles className="h-3.5 w-3.5" />
                   <span>Testar Demonstração (1-Clique)</span>
@@ -247,14 +247,14 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
                   <Link
                     href="/login"
                     onClick={() => setIsMobileOpen(false)}
-                    className="text-center py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-slate-200"
+                    className="text-center py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-semibold text-slate-200"
                   >
                     Entrar
                   </Link>
                   <Link
                     href="/register"
                     onClick={() => setIsMobileOpen(false)}
-                    className="text-center py-2 rounded-xl bg-white/10 text-xs font-semibold text-white"
+                    className="text-center py-2 rounded-lg bg-white/10 text-xs font-semibold text-white"
                   >
                     Criar Conta
                   </Link>

@@ -64,12 +64,12 @@ export function VerticalRail() {
       <div className="flex flex-col items-center">
         <button
           onClick={toggleTheme}
-          className="flex flex-col items-center gap-1.5 p-1 rounded-full bg-white dark:bg-card border border-slate-200/80 dark:border-border shadow-xs hover:shadow-sm transition-all"
+          className="flex flex-col items-center gap-1.5 p-1 rounded-xl bg-white dark:bg-card border border-slate-200/80 dark:border-border shadow-xs hover:shadow-sm transition-all"
           title="Alternar tema claro/escuro"
         >
           <div
             className={cn(
-              'p-2 rounded-full transition-all',
+              'p-2 rounded-lg transition-all',
               !isDark ? 'bg-primary text-white shadow-xs' : 'text-muted-foreground'
             )}
           >
@@ -77,7 +77,7 @@ export function VerticalRail() {
           </div>
           <div
             className={cn(
-              'p-2 rounded-full transition-all',
+              'p-2 rounded-lg transition-all',
               isDark ? 'bg-primary text-white shadow-xs' : 'text-muted-foreground'
             )}
           >
@@ -101,7 +101,7 @@ export function VerticalRail() {
               prefetch={true}
               title={item.label}
               className={cn(
-                'relative flex h-11 w-11 items-center justify-center rounded-2xl transition-colors duration-150 ease-out',
+                'relative flex h-11 w-11 items-center justify-center rounded-xl transition-colors duration-150 ease-out',
                 isActive
                   ? 'bg-slate-900 text-white shadow-sm dark:bg-primary dark:text-white'
                   : 'text-slate-400 hover:text-slate-700 hover:bg-white/80 dark:hover:bg-card'
@@ -119,13 +119,13 @@ export function VerticalRail() {
       {/* Bottom: Help & Logout */}
       <div className="flex flex-col items-center gap-2">
         <button
-          className="flex h-10 w-10 items-center justify-center rounded-full text-slate-400 hover:text-slate-700 hover:bg-white/80 dark:hover:bg-card transition-colors"
+          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-400 hover:text-slate-700 hover:bg-white/80 dark:hover:bg-card transition-colors"
           title="Central de Ajuda"
         >
           <HelpCircle className="h-5 w-5" />
         </button>
         <button
-          className="flex h-10 w-10 items-center justify-center rounded-full text-slate-400 hover:text-rose-600 hover:bg-white/80 dark:hover:bg-card transition-colors"
+          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-400 hover:text-rose-600 hover:bg-white/80 dark:hover:bg-card transition-colors"
           title="Sair"
         >
           <LogOut className="h-5 w-5" />

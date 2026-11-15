@@ -18,7 +18,7 @@ export default function AuthLayout({
         <Link href="/" className="flex items-center gap-2 group">
           <CentriorLogo variant="full" />
         </Link>
-        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-card border border-slate-200/80 dark:border-border text-[11px] font-semibold text-slate-600 dark:text-slate-300 shadow-xs">
+        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-md bg-white dark:bg-card border border-slate-200/80 dark:border-border text-[11px] font-semibold text-slate-600 dark:text-slate-300 shadow-xs">
           <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
           <span>Ambiente Seguro • Criptografia Bancária</span>
         </div>

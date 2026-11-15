@@ -136,12 +136,12 @@ export function RecentActivitiesTable() {
               placeholder="Buscar..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-8 pr-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-border text-xs focus:outline-hidden focus:ring-2 focus:ring-[#FF5722] w-32 sm:w-40 transition-all"
+              className="pl-8 pr-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-border text-xs focus:outline-hidden focus:ring-2 focus:ring-[#FF5722] w-32 sm:w-40 transition-all"
             />
           </div>
 
           {/* Filter Button */}
-          <button className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-border text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 transition-colors">
+          <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-border text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 transition-colors">
             <Filter className="h-3 w-3" />
             <span>Filtro</span>
           </button>
@@ -232,14 +232,14 @@ export function RecentActivitiesTable() {
           <div className="flex items-center justify-center gap-3">
             <button
               onClick={() => setIsAddTransactionOpen(true)}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:opacity-90 transition-opacity cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:opacity-90 transition-opacity cursor-pointer"
             >
               <Plus className="h-3.5 w-3.5" />
               <span>Novo Lançamento</span>
             </button>
             <Link
               href="/import"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200 transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200 transition-colors"
             >
               <Upload className="h-3.5 w-3.5" />
               <span>Importar OFX</span>

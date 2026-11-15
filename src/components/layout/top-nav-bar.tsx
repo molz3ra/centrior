@@ -87,7 +87,7 @@ export function TopNavBar() {
         </div>
 
         {/* Center: Floating Navigation Pills */}
-        <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1 bg-white dark:bg-card p-1 rounded-2xl border border-slate-200/70 dark:border-border shadow-xs shrink-0">
+        <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1 bg-white dark:bg-card p-1 rounded-xl border border-slate-200/70 dark:border-border shadow-xs shrink-0">
           {navLinks.map((link) => {
             const isActive =
               link.href === '/dashboard'
@@ -99,7 +99,7 @@ export function TopNavBar() {
                 href={link.href}
                 prefetch={true}
                 className={cn(
-                  'rounded-xl px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-colors duration-150 ease-out',
+                  'rounded-lg px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-colors duration-150 ease-out',
                   isActive
                     ? 'bg-slate-900 text-white shadow-sm dark:bg-primary dark:text-white'
                     : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/50',
@@ -117,7 +117,7 @@ export function TopNavBar() {
           {/* AI Advisor Button (Rule 13 Streaming) */}
           <button
             onClick={() => setIsAiOpen(true)}
-            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:opacity-90 active:scale-98 transition-all shrink-0"
+            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:opacity-90 active:scale-98 transition-all shrink-0"
             title="Assistente Financeiro IA"
           >
             <Sparkles className="h-3.5 w-3.5 shrink-0" />
@@ -126,7 +126,7 @@ export function TopNavBar() {
 
           {/* Search Button */}
           <button
-            className="hidden sm:flex h-9 w-9 items-center justify-center rounded-xl bg-white dark:bg-card border border-slate-200/70 dark:border-border text-slate-600 hover:text-slate-900 shadow-xs hover:shadow-sm transition-all shrink-0"
+            className="hidden sm:flex h-9 w-9 items-center justify-center rounded-lg bg-white dark:bg-card border border-slate-200/70 dark:border-border text-slate-600 hover:text-slate-900 shadow-xs hover:shadow-sm transition-all shrink-0"
             title="Buscar (Ctrl+K)"
           >
             <Search className="h-4 w-4" />
@@ -137,7 +137,7 @@ export function TopNavBar() {
 
           {/* Info Button - Shown on extra large screens */}
           <button
-            className="hidden 2xl:flex h-9 w-9 items-center justify-center rounded-xl bg-white dark:bg-card border border-slate-200/70 dark:border-border text-slate-600 hover:text-slate-900 shadow-xs hover:shadow-sm transition-all shrink-0"
+            className="hidden 2xl:flex h-9 w-9 items-center justify-center rounded-lg bg-white dark:bg-card border border-slate-200/70 dark:border-border text-slate-600 hover:text-slate-900 shadow-xs hover:shadow-sm transition-all shrink-0"
             title="Ajuda"
           >
             <HelpCircle className="h-4 w-4" />
@@ -147,7 +147,7 @@ export function TopNavBar() {
           <div className="relative shrink-0" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-1.5 sm:gap-2 pl-1 sm:pl-1.5 pr-2 sm:pr-2.5 py-1 rounded-xl bg-white dark:bg-card border border-slate-200/70 dark:border-border shadow-xs hover:shadow-sm cursor-pointer transition-all shrink-0 max-w-[190px]"
+              className="flex items-center gap-1.5 sm:gap-2 pl-1 sm:pl-1.5 pr-2 sm:pr-2.5 py-1 rounded-lg bg-white dark:bg-card border border-slate-200/70 dark:border-border shadow-xs hover:shadow-sm cursor-pointer transition-all shrink-0 max-w-[190px]"
               aria-expanded={isDropdownOpen}
               aria-label="Menu do usuário"
             >

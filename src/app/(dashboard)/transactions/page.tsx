@@ -71,20 +71,20 @@ export default function TransactionsPage() {
         </div>
 
         <div className="flex items-center gap-2.5">
-          <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-card border border-slate-200/80 dark:border-border text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-xs hover:shadow-sm transition-colors cursor-pointer">
+          <button className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white dark:bg-card border border-slate-200/80 dark:border-border text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-xs hover:shadow-sm transition-colors cursor-pointer">
             <Download className="h-4 w-4" />
             <span>Exportar CSV</span>
           </button>
           <Link
             href="/import"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-card border border-slate-200/80 dark:border-border text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-xs hover:shadow-sm transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white dark:bg-card border border-slate-200/80 dark:border-border text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-xs hover:shadow-sm transition-colors"
           >
             <Upload className="h-4 w-4" />
             <span>Importar OFX</span>
           </Link>
           <button
             onClick={() => setIsAddTransactionOpen(true)}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-primary dark:text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-900 text-white dark:bg-primary dark:text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-colors cursor-pointer"
           >
             <Plus className="h-4 w-4" />
             <span>Nova Transação</span>
@@ -196,14 +196,14 @@ export default function TransactionsPage() {
             <div className="flex items-center justify-center gap-3">
               <button
                 onClick={() => setIsAddTransactionOpen(true)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:bg-[#F4511E] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FF5722] text-white text-xs font-semibold shadow-xs hover:bg-[#F4511E] transition-colors cursor-pointer"
               >
                 <Plus className="h-4 w-4" />
                 <span>Novo Lançamento</span>
               </button>
               <Link
                 href="/import"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200 transition-colors"
               >
                 <Upload className="h-4 w-4" />
                 <span>Importar OFX Bancário</span>

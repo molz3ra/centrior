@@ -41,7 +41,7 @@ export default function BudgetsPage() {
           </p>
         </div>
 
-        <button className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-primary dark:text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-colors self-start sm:self-auto cursor-pointer">
+        <button className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-900 text-white dark:bg-primary dark:text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-colors self-start sm:self-auto cursor-pointer">
           <Plus className="h-4 w-4" />
           <span>Novo Orçamento</span>
         </button>
@@ -159,7 +159,7 @@ export default function BudgetsPage() {
           <p className="text-xs text-slate-400 max-w-md mx-auto mt-1 mb-6">
             Seu planejamento orçamentário está zerado. Defina metas de gastos por categoria para manter suas despesas sob rigoroso controle e prevenir desvios patrimoniais.
           </p>
-          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FF5722] text-white text-xs font-bold shadow-md hover:bg-[#F4511E] transition-colors cursor-pointer">
+          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#FF5722] text-white text-xs font-bold shadow-md hover:bg-[#F4511E] transition-colors cursor-pointer">
             <Plus className="h-4 w-4" />
             <span>Definir Primeiro Orçamento</span>
           </button>

@@ -35,10 +35,10 @@ export function CentriorLogo({
   showText = true,
 }: CentriorLogoProps) {
   const sizeMap = {
-    sm: { icon: 'h-7 w-7 rounded-lg', svg: 'h-4 w-4', text: 'text-base' },
-    md: { icon: 'h-10 w-10 rounded-2xl', svg: 'h-5 w-5', text: 'text-xl' },
-    lg: { icon: 'h-12 w-12 rounded-2xl', svg: 'h-6 w-6', text: 'text-2xl' },
-    xl: { icon: 'h-16 w-16 rounded-3xl', svg: 'h-8 w-8', text: 'text-3xl' },
+    sm: { icon: 'h-7 w-7 rounded-md', svg: 'h-4 w-4', text: 'text-base' },
+    md: { icon: 'h-10 w-10 rounded-xl', svg: 'h-5 w-5', text: 'text-xl' },
+    lg: { icon: 'h-12 w-12 rounded-xl', svg: 'h-6 w-6', text: 'text-2xl' },
+    xl: { icon: 'h-16 w-16 rounded-2xl', svg: 'h-8 w-8', text: 'text-3xl' },
   };
 
   const currentSize = sizeMap[size];

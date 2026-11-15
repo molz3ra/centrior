@@ -113,7 +113,7 @@ export function LiveSimulator() {
                   setSelectedBank(key);
                   setHasProcessed(false);
                 }}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-[transform,background-color] active:scale-[0.97] cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-[transform,background-color] active:scale-[0.97] cursor-pointer ${
                   selectedBank === key
                     ? 'bg-[#FF5722] text-white shadow-md shadow-[#FF5722]/30 scale-[1.02]'
                     : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
@@ -143,7 +143,7 @@ export function LiveSimulator() {
             <button
               onClick={handleSimulate}
               disabled={isProcessing}
-              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-bold shadow-lg shadow-[#FF5722]/25 hover:scale-[1.02] active:scale-[0.97] transition-transform cursor-pointer shrink-0 disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-bold shadow-lg shadow-[#FF5722]/25 hover:scale-[1.02] active:scale-[0.97] transition-transform cursor-pointer shrink-0 disabled:opacity-50"
             >
               {isProcessing ? (
                 <>

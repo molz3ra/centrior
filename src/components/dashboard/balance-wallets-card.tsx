@@ -52,14 +52,14 @@ export function BalanceWalletsCard() {
       <div className="grid grid-cols-2 gap-3 mb-6">
         <button
           onClick={() => setIsAddTransactionOpen(true)}
-          className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-900 text-white dark:bg-primary dark:text-white text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-98 shadow-sm transition-colors cursor-pointer"
+          className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-slate-900 text-white dark:bg-primary dark:text-white text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-98 shadow-sm transition-colors cursor-pointer"
         >
           <ArrowUpRight className="h-4 w-4" />
           <span>Transferir</span>
         </button>
         <button
           onClick={() => setIsAddAccountOpen(true)}
-          className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-98 transition-colors cursor-pointer"
+          className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-98 transition-colors cursor-pointer"
         >
           <ArrowDownLeft className="h-4 w-4" />
           <span>Solicitar</span>

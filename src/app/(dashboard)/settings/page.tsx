@@ -85,7 +85,7 @@ export default function SettingsPage() {
 
         <button
           onClick={handleSave}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FF5722] text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-colors self-start sm:self-auto cursor-pointer"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FF5722] text-white text-xs font-semibold shadow-sm hover:opacity-95 active:scale-98 transition-colors self-start sm:self-auto cursor-pointer"
         >
           {saved ? <CheckCircle2 className="h-4 w-4" /> : null}
           <span>{saved ? 'Alterações Salvas!' : 'Salvar Alterações'}</span>
@@ -123,7 +123,7 @@ export default function SettingsPage() {
                   key={w.value}
                   type="button"
                   onClick={() => setWorkspace(w.value)}
-                  className={`p-3 rounded-2xl text-xs font-semibold border transition-all text-center ${
+                  className={`p-3 rounded-lg text-xs font-semibold border transition-all text-center ${
                     workspace === w.value
                       ? 'border-[#FF5722] bg-[#FF5722]/5 text-[#FF5722]'
                       : 'border-slate-100 dark:border-border text-slate-600 hover:bg-slate-50'
@@ -149,7 +149,7 @@ export default function SettingsPage() {
                   key={c.value}
                   type="button"
                   onClick={() => setCurrency(c.value)}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${
+                  className={`px-4 py-2 rounded-lg text-xs font-semibold border transition-all ${
                     currency === c.value
                       ? 'bg-slate-900 text-white dark:bg-primary shadow-xs'
                       : 'border-slate-200 text-slate-600 hover:bg-slate-50'
@@ -396,7 +396,7 @@ export default function SettingsPage() {
               onClick={() => {
                 fetch('/api/demo/reset', { method: 'POST' }).then(() => window.location.reload());
               }}
-              className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors cursor-pointer"
+              className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors cursor-pointer"
             >
               <RotateCcw className="h-4 w-4" />
               <span>Resetar Base de Dados</span>

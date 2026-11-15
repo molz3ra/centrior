@@ -60,7 +60,7 @@ export function FaqSection() {
             <div
               key={idx}
               className={cn(
-                'w-full rounded-2xl border transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden',
+                'w-full rounded-xl border transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden',
                 isOpen
                   ? 'border-[#FF5722]/30 bg-white/[0.04] shadow-lg shadow-[#FF5722]/5'
                   : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.035] hover:border-white/15'
@@ -78,7 +78,7 @@ export function FaqSection() {
                   {faq.q}
                 </span>
                 <div className={cn(
-                  'h-7 w-7 rounded-full flex items-center justify-center shrink-0 border transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+                  'h-7 w-7 rounded-lg flex items-center justify-center shrink-0 border transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
                   isOpen
                     ? 'border-[#FF5722]/40 bg-[#FF5722]/10 text-[#FF5722]'
                     : 'border-white/10 bg-white/5 text-slate-400'
