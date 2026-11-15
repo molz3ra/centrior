@@ -42,25 +42,15 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* LADO ESQUERDO: Título Brutalista & Badges de Autoridade */}
           <div className="lg:col-span-6 flex flex-col items-start text-left space-y-5">
-            {/* Constelação de Badges Satélites */}
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/70 border border-white/10 shadow-lg text-[11px] font-mono text-slate-200 backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
+            {/* Badges Técnicos de Autoridade */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 text-[11px] font-mono text-slate-200 backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
                 <span>0 centavos divergentes</span>
               </div>
 
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:border-[#FF5722]/40 transition-colors">
-                <span className="flex h-1.5 w-1.5 rounded-full bg-[#FF5722] animate-pulse" />
-                <span className="text-[11px] font-semibold text-slate-300">
-                  Centrior 2026
-                </span>
-                <span className="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-full bg-[#FF5722]/20 text-[#FF5722]">
-                  Sub-Cent Precision
-                </span>
-              </div>
-
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 border border-white/10 shadow-lg text-[11px] font-mono text-slate-200 backdrop-blur-md">
-                <Zap className="w-3 h-3 text-[#FF5722]" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 text-[11px] font-mono text-slate-200 backdrop-blur-md">
+                <Zap className="w-3.5 h-3.5 text-primary" />
                 <span>50K lançamentos a 60 FPS</span>
               </div>
             </div>
@@ -98,7 +88,7 @@ export function HeroSection() {
               <button
                 onClick={handleInstantDemo}
                 disabled={isDemoLoading}
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-gradient-to-r from-orange-500 via-[#FF5722] to-amber-500 hover:from-orange-600 hover:to-[#F4511E] text-white text-sm font-bold shadow-xl shadow-[#FF5722]/25 hover:shadow-2xl hover:shadow-[#FF5722]/40 transition-all hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-gradient-to-r from-orange-500 via-[#FF5722] to-amber-500 hover:from-orange-600 hover:to-[#F4511E] text-white text-sm font-bold shadow-xl shadow-[#FF5722]/25 hover:shadow-2xl hover:shadow-[#FF5722]/40 transition-[transform,box-shadow] hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
               >
                 {isDemoLoading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -110,7 +100,7 @@ export function HeroSection() {
 
               <Link
                 href="/register"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-semibold transition-all hover:scale-[1.01] active:scale-[0.97]"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-semibold transition-[transform,background-color] hover:scale-[1.01] active:scale-[0.97]"
               >
                 <span>Criar Conta Corporativa</span>
                 <ArrowRight className="h-4 w-4 text-slate-400" />
@@ -216,7 +206,7 @@ export function HeroSection() {
 
               <div className="space-y-2 mt-4 relative z-10">
                 <h3 className="text-lg sm:text-xl font-black tracking-tight uppercase leading-snug font-sans">
-                  Centrior AI Advisor: Diagnóstico Preditivo de Runway.
+                  Diagnóstico Preditivo de Runway com AI Advisor.
                 </h3>
                 <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed">
                   Análise de fluxo de caixa em tempo real, detecção de tarifas bancárias duplicadas e projeção da taxa de queima mensal com insights acionáveis em linguagem executiva.

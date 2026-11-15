@@ -19,10 +19,10 @@ export function MarqueeTicker() {
     <div className="flex items-center gap-8 px-4 shrink-0">
       {TICKER_ITEMS.map((item, idx) => (
         <div key={idx} className="flex items-center gap-8 shrink-0">
-          <span className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-slate-300 font-sans hover:text-[#FF5722] transition-colors">
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-300 font-sans hover:text-primary transition-colors">
             {item}
           </span>
-          <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722] shadow-[0_0_8px_#FF5722] shrink-0" />
+          <span className="text-slate-600 text-sm font-mono shrink-0 select-none">/</span>
         </div>
       ))}
     </div>

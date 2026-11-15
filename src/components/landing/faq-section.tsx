@@ -39,14 +39,11 @@ export function FaqSection() {
   };
 
   return (
-    <section id="faq" className="relative w-full py-8 sm:py-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
-      {/* Hairline structural divider */}
-      <div className="w-full border-t border-white/[0.06] mb-8 sm:mb-10" />
-
+    <section id="faq" className="relative w-full py-6 sm:py-8 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
       <div className="text-center space-y-2 mb-8">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#FF5722] text-xs font-bold uppercase tracking-wider">
-          <HelpCircle className="h-3.5 w-3.5" />
-          <span>Esclarecimentos Rápidos</span>
+        <div className="flex items-center justify-center gap-1.5 text-xs font-medium text-primary">
+          <HelpCircle className="h-4 w-4" />
+          <span>Esclarecimentos rápidos</span>
         </div>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
           Perguntas Frequentes

@@ -42,7 +42,7 @@ test.describe('Sistema de Autenticação Fintech (Centrior)', () => {
 
     // Deve ser redirecionado para o dashboard com sucesso
     await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
-    await expect(page.locator('text=Good morning')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('text=Bom dia')).toBeVisible({ timeout: 15000 });
 
     // Banner de Sandbox deve estar visível para contas demo
     await expect(page.locator('text=Modo Demonstração (Sandbox) Ativo')).toBeVisible();
@@ -95,7 +95,7 @@ test.describe('Sistema de Autenticação Fintech (Centrior)', () => {
     await expect(page).toHaveURL(/\/dashboard|\//, { timeout: 15000 });
 
     // 1. Saudação personalizada com o primeiro nome real
-    await expect(page.locator('text=Good morning, Carlos')).toBeVisible();
+    await expect(page.locator('text=Bom dia, Carlos')).toBeVisible();
 
     // 2. Banner de Demonstração NÃO deve aparecer para contas reais
     await expect(page.locator('text=Modo Demonstração (Sandbox) Ativo')).not.toBeVisible();

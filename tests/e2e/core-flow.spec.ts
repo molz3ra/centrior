@@ -11,7 +11,7 @@ test.describe('Finance Control Core Flow', () => {
     await page.goto('/dashboard');
 
     // Wait for page load and verify dashboard header content
-    await expect(page.locator('text=Good morning')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('text=Bom dia')).toBeVisible({ timeout: 15000 });
 
     // 2. Check KPI values exist and are visible
     const balanceCard = page.locator('text=Saldo Total Consolidado').first();
@@ -26,6 +26,6 @@ test.describe('Finance Control Core Flow', () => {
 
     // Reload page to verify state after demo reset
     await page.reload();
-    await expect(page.locator('text=Good morning')).toBeVisible();
+    await expect(page.locator('text=Bom dia')).toBeVisible();
   });
 });

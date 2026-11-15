@@ -28,7 +28,7 @@ test.describe('Auditoria de Performance - As 31 Regras Essenciais', () => {
     const loadTime = Date.now() - start;
 
     // Verifica presença do header principal e dos cards
-    await expect(page.locator('text=Good morning')).toBeVisible();
+    await expect(page.locator('text=Bom dia')).toBeVisible();
     await expect(page.locator('text=R$ 689.372,00')).toBeVisible();
 
     // Valida que mesmo throttled, carregou com rapidez no servidor de desenvolvimento

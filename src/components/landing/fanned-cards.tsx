@@ -21,7 +21,7 @@ export function FannedCards() {
       <div className="relative flex items-center justify-center w-full max-w-[460px] h-[260px] sm:h-[300px] perspective-1000 overflow-visible">
         {/* CARD 1: LEFT - Titanium Matte Black (Angled -12°) */}
         <div
-          className="absolute w-[220px] sm:w-[250px] md:w-[270px] h-[138px] sm:h-[158px] md:h-[168px] rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-white shadow-2xl transition-all duration-300 ease-out hover:scale-110 hover:z-30 cursor-pointer border border-white/10"
+          className="absolute w-[220px] sm:w-[250px] md:w-[270px] h-[138px] sm:h-[158px] md:h-[168px] rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-white shadow-2xl transition-transform duration-300 ease-out hover:scale-110 hover:z-30 cursor-pointer border border-white/10"
           style={{
             transform: 'translateX(-65px) rotate(-12deg) translateY(8px)',
             background: 'linear-gradient(135deg, #181c24 0%, #0d1017 100%)',
@@ -62,7 +62,7 @@ export function FannedCards() {
 
         {/* CARD 3: RIGHT - Flame Orange Satin (Angled +12°) */}
         <div
-          className="absolute w-[220px] sm:w-[250px] md:w-[270px] h-[138px] sm:h-[158px] md:h-[168px] rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-white shadow-2xl transition-all duration-300 ease-out hover:scale-110 hover:z-30 cursor-pointer border border-orange-400/30"
+          className="absolute w-[220px] sm:w-[250px] md:w-[270px] h-[138px] sm:h-[158px] md:h-[168px] rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-white shadow-2xl transition-transform duration-300 ease-out hover:scale-110 hover:z-30 cursor-pointer border border-orange-400/30"
           style={{
             transform: 'translateX(65px) rotate(12deg) translateY(8px)',
             background: 'linear-gradient(135deg, #FF6E40 0%, #FF5722 50%, #D84315 100%)',
@@ -103,7 +103,7 @@ export function FannedCards() {
 
         {/* CARD 2: CENTER - Ultra Platinum Brushed Metal (Elevated, 0°) */}
         <div
-          className="absolute z-20 w-[230px] sm:w-[260px] md:w-[280px] h-[142px] sm:h-[162px] md:h-[172px] rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-slate-900 shadow-2xl transition-all duration-300 ease-out hover:scale-110 hover:z-30 cursor-pointer border border-white"
+          className="absolute z-20 w-[230px] sm:w-[260px] md:w-[280px] h-[142px] sm:h-[162px] md:h-[172px] rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-slate-900 shadow-2xl transition-transform duration-300 ease-out hover:scale-110 hover:z-30 cursor-pointer border border-white"
           style={{
             transform: 'translateY(-10px) scale(1.02)',
             background: 'linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 50%, #E2E8F0 100%)',

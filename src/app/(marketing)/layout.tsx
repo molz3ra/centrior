@@ -2,11 +2,11 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Centrior — Inteligência Financeira e Conciliação de Alta Precisão',
+  title: 'Centrior - Inteligência Financeira e Conciliação de Alta Precisão',
   description:
     'Controle financeiro de nível institucional com precisão matemática em centavos, conciliação inteligente de extratos OFX/CSV, auditoria preditiva e IA consultiva integrada.',
   openGraph: {
-    title: 'Centrior — Inteligência Financeira e Conciliação de Alta Precisão',
+    title: 'Centrior - Inteligência Financeira e Conciliação de Alta Precisão',
     description:
       'Controle financeiro com precisão sub-centavo, conciliação inteligente de extratos OFX/CSV e auditoria contábil.',
     url: 'https://centrior.app',

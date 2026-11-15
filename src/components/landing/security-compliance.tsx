@@ -13,23 +13,14 @@ import {
 
 export function SecurityCompliance() {
   return (
-    <section id="seguranca" className="relative py-8 sm:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
-      {/* Hairline structural divider */}
-      <div className="w-full border-t border-white/[0.06] mb-8 sm:mb-10" />
-
-      {/* Section Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[220px] bg-emerald-500/5 blur-[120px] pointer-events-none rounded-full" />
-
+    <section id="seguranca" className="relative py-6 sm:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
       <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#0B0F19] to-[#06080D] p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-        {/* Glow */}
-        <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/10 blur-[120px] pointer-events-none rounded-full" />
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
           {/* Left Column: Heading & Description */}
           <div className="lg:col-span-6 space-y-4">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              <span>Padrão Institucional de Segurança</span>
+            <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-400">
+              <ShieldCheck className="h-4 w-4" />
+              <span>Padrão institucional de segurança</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
               Seus dados protegidos sob conformidade contábil e LGPD.

@@ -42,7 +42,7 @@ test.describe('Página Inicial & Landing Page Cinematográfica (Centrior)', () =
     await expect(page.locator('text=Motor Matemático em Centavos Inteiros.')).toBeVisible();
     await expect(page.locator('text=Extrato Virtualizado a 60 Quadros.')).toBeVisible();
     await expect(page.locator('text=Conciliação Bancária com Deduplicação.')).toBeVisible();
-    await expect(page.locator('text=Centrior AI Advisor: Diagnóstico Preditivo de Runway.')).toBeVisible();
+    await expect(page.locator('text=Diagnóstico Preditivo de Runway com AI Advisor.')).toBeVisible();
 
     // Módulo 01 inicialmente ativo no ServicesDrawer
     await expect(page.locator('text=ofx-parser.ts · Blindagem OWASP A03')).toBeVisible();
@@ -100,7 +100,7 @@ test.describe('Página Inicial & Landing Page Cinematográfica (Centrior)', () =
 
     // Deve ser redirecionado para o dashboard logado
     await expect(page).toHaveURL(/\/dashboard|\//, { timeout: 10000 });
-    await expect(page.locator('text=Good morning, Lucas')).toBeVisible();
+    await expect(page.locator('text=Bom dia, Lucas')).toBeVisible();
     await expect(page.locator('text=Modo Demonstração (Sandbox) Ativo')).toBeVisible();
   });
 });

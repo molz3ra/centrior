@@ -90,18 +90,12 @@ export function LiveSimulator() {
   };
 
   return (
-    <section id="simulador" className="relative py-8 sm:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
-      {/* Decorative hairline anchor */}
-      <div className="w-full border-t border-white/[0.06] mb-8 sm:mb-10" />
-
+    <section id="simulador" className="relative py-6 sm:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
       <div className="rounded-3xl border border-white/10 bg-gradient-to-b from-[#0B0F19] via-[#080B13] to-[#06080D] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-        {/* Glow Element */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[250px] bg-[#FF5722]/10 blur-[130px] pointer-events-none rounded-full" />
-
         <div className="relative z-10 max-w-3xl mx-auto text-center space-y-2.5 mb-6">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-[#FF5722] text-xs font-bold uppercase tracking-wider">
-            <Cpu className="h-3.5 w-3.5" />
-            <span>Simulador em Tempo Real</span>
+          <div className="flex items-center justify-center gap-1.5 text-xs font-medium text-primary">
+            <Cpu className="h-4 w-4" />
+            <span>Simulador em tempo real</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
             Teste o motor de conciliação com 1 clique.
@@ -119,7 +113,7 @@ export function LiveSimulator() {
                   setSelectedBank(key);
                   setHasProcessed(false);
                 }}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all active:scale-[0.97] cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-[transform,background-color] active:scale-[0.97] cursor-pointer ${
                   selectedBank === key
                     ? 'bg-[#FF5722] text-white shadow-md shadow-[#FF5722]/30 scale-[1.02]'
                     : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'

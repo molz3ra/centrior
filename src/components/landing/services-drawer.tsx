@@ -78,16 +78,13 @@ export function ServicesDrawer() {
   const active = MODULES[activeIdx];
 
   return (
-    <section id="recursos" className="relative py-8 sm:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
-      {/* Hairline structural divider */}
-      <div className="w-full border-t border-white/[0.06] mb-8 sm:mb-10" />
-
+    <section id="recursos" className="relative py-6 sm:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 border-b border-white/10 pb-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 border-b border-white/10 pb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#FF5722] text-xs font-bold uppercase tracking-wider mb-3">
-            <Layers className="h-3.5 w-3.5" />
-            <span>Capacidades da Plataforma</span>
+          <div className="flex items-center gap-1.5 text-xs font-medium text-primary mb-2">
+            <Layers className="h-4 w-4" />
+            <span>Capacidades da plataforma</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tighter uppercase leading-[0.98]">
             Arquitetura em Ação
@@ -108,7 +105,7 @@ export function ServicesDrawer() {
               <button
                 key={item.id}
                 onClick={() => setActiveIdx(idx)}
-                className={`w-full text-left p-4 rounded-2xl transition-all duration-200 active:scale-[0.98] cursor-pointer flex items-center justify-between border ${
+                className={`w-full text-left p-4 rounded-2xl transition-colors duration-150 active:scale-[0.98] cursor-pointer flex items-center justify-between border ${
                   isSelected
                     ? 'bg-white/10 border-white/20 shadow-xl'
                     : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/10 text-slate-400'

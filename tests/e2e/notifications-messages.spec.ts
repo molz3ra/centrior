@@ -5,7 +5,7 @@ test.describe('Sistema Unificado de Mensagens & Notificações (Centrior)', () =
     // Autentica via sessão sandbox demo instantânea
     await page.request.post('/api/auth/demo-login');
     await page.goto('/dashboard');
-    await expect(page.locator('text=Good morning')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('text=Bom dia')).toBeVisible({ timeout: 15000 });
   });
 
   test('1. Sino de Notificações: Exibição do popover, contagem de badges e alertas financeiros', async ({
