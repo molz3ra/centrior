@@ -8,7 +8,7 @@ test.describe('Finance Control Core Flow', () => {
 
   test('Access dashboard, check KPI values, simulate mock transaction, and verify demo reset', async ({ page }) => {
     // 1. Access the dashboard
-    await page.goto('/');
+    await page.goto('/dashboard');
 
     // Wait for page load and verify dashboard header content
     await expect(page.locator('text=Good morning')).toBeVisible({ timeout: 15000 });

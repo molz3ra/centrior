@@ -7,9 +7,9 @@ import { ShieldCheck, ArrowRight, Sparkles } from 'lucide-react';
 
 export function LandingFooter() {
   return (
-    <footer className="mt-20 border-t border-white/10 bg-[#05070B] text-slate-400 text-xs">
+    <footer className="mt-8 sm:mt-12 border-t border-white/10 bg-[#05070B] text-slate-400 text-xs">
       {/* Pre-Footer Call to Action Strip */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center space-y-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 text-center space-y-6">
         <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           Pronto para experimentar a precisão sub-centavo?
         </h3>
@@ -19,14 +19,14 @@ export function LandingFooter() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/login"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-orange-500 to-[#FF5722] hover:from-orange-600 hover:to-[#F4511E] text-white text-xs font-bold shadow-lg shadow-[#FF5722]/30 hover:scale-[1.02] transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-orange-500 to-[#FF5722] hover:from-orange-600 hover:to-[#F4511E] text-white text-xs font-bold shadow-lg shadow-[#FF5722]/30 hover:scale-[1.02] active:scale-[0.97] transition-all"
           >
             <Sparkles className="h-3.5 w-3.5" />
             <span>Testar no Modo Demonstração</span>
           </Link>
           <Link
             href="/register"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-semibold transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-semibold hover:scale-[1.01] active:scale-[0.97] transition-all"
           >
             <span>Criar Conta Corporativa</span>
             <ArrowRight className="h-3.5 w-3.5 text-slate-400" />
@@ -35,7 +35,7 @@ export function LandingFooter() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/5 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 border-t border-white/5 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="md:col-span-2 space-y-3">
           <CentriorLogo size="md" variant="full" />
           <p className="text-xs text-slate-400 leading-relaxed max-w-md">
@@ -52,7 +52,7 @@ export function LandingFooter() {
             <li><a href="#recursos" className="hover:text-white transition-colors">Recursos do Sistema</a></li>
             <li><a href="#simulador" className="hover:text-white transition-colors">Simulador OFX</a></li>
             <li><a href="#diferenciais" className="hover:text-white transition-colors">Diferenciais Técnicos</a></li>
-            <li><a href="#comparativo" className="hover:text-white transition-colors">Comparativo</a></li>
+            <li><a href="#seguranca" className="hover:text-white transition-colors">Segurança & LGPD</a></li>
             <li><a href="#faq" className="hover:text-white transition-colors">Dúvidas Frequentes</a></li>
           </ul>
         </div>

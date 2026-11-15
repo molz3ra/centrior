@@ -75,7 +75,7 @@ export default function RegisterPage() {
       if (error) {
         setErrorMsg(error.message || 'Erro ao registrar usuário. Este e-mail já pode estar em uso.');
       } else {
-        router.push('/');
+        router.push('/dashboard');
         router.refresh();
       }
     } catch (err: any) {

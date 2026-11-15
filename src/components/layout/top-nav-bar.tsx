@@ -81,7 +81,7 @@ export function TopNavBar() {
             <Menu className="h-5 w-5" />
           </button>
           
-          <Link href="/dashboard" className="flex items-center shrink-0">
+          <Link href="/" className="flex items-center shrink-0" title="Voltar para a Página Inicial">
             <CentriorLogo size="md" />
           </Link>
         </div>
@@ -91,7 +91,7 @@ export function TopNavBar() {
           {navLinks.map((link) => {
             const isActive =
               link.href === '/dashboard'
-                ? pathname === '/dashboard' || pathname === '/'
+                ? pathname === '/dashboard'
                 : pathname.startsWith(link.href);
             return (
               <Link
@@ -183,7 +183,7 @@ export function TopNavBar() {
                 </div>
 
                 <Link
-                  href="/?public=true"
+                  href="/"
                   onClick={() => setIsDropdownOpen(false)}
                   className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                 >

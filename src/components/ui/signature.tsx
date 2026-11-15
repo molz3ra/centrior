@@ -67,9 +67,9 @@ export function Signature({
           strokeLinecap="round"
           strokeLinejoin="round"
           style={{
-            strokeDasharray: 380,
-            strokeDashoffset: animate ? 0 : 380,
-            transition: `stroke-dashoffset ${duration * 0.4}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s`,
+            strokeDasharray: 300,
+            strokeDashoffset: animate ? 0 : 300,
+            transition: `stroke-dashoffset ${duration * 0.32}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s`,
             filter: 'url(#sig-glow)',
           }}
         />
@@ -82,9 +82,9 @@ export function Signature({
           strokeLinecap="round"
           strokeLinejoin="round"
           style={{
-            strokeDasharray: 920,
-            strokeDashoffset: animate ? 0 : 920,
-            transition: `stroke-dashoffset ${duration * 0.55}s cubic-bezier(0.35, 0, 0.25, 1) ${delay + duration * 0.3}s`,
+            strokeDasharray: 680,
+            strokeDashoffset: animate ? 0 : 680,
+            transition: `stroke-dashoffset ${duration * 0.45}s cubic-bezier(0.35, 0, 0.25, 1) ${delay + duration * 0.28}s`,
             filter: 'url(#sig-glow)',
           }}
         />
@@ -96,9 +96,9 @@ export function Signature({
           strokeWidth="2.8"
           strokeLinecap="round"
           style={{
-            strokeDasharray: 45,
-            strokeDashoffset: animate ? 0 : 45,
-            transition: `stroke-dashoffset ${duration * 0.2}s ease-out ${delay + duration * 0.72}s`,
+            strokeDasharray: 40,
+            strokeDashoffset: animate ? 0 : 40,
+            transition: `stroke-dashoffset ${duration * 0.12}s ease-out ${delay + duration * 0.73}s`,
           }}
         />
 
@@ -111,21 +111,22 @@ export function Signature({
           style={{
             opacity: animate ? 1 : 0,
             transform: animate ? 'scale(1)' : 'scale(0)',
-            transition: `opacity 0.2s ease-out ${delay + duration * 0.82}s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay + duration * 0.82}s`,
+            transition: `opacity 0.12s ease-out ${delay + duration * 0.82}s, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay + duration * 0.82}s`,
             filter: `drop-shadow(0 0 8px ${color})`,
           }}
         />
 
-        {/* 5. Sweeping Underline Signature Flourish */}
+        {/* 5. Sweeping Underline Signature Flourish (Inicia estritamente APÓS a assinatura em cima estar completa) */}
         <path
           d="M 52 104 C 150 120, 280 114, 388 94 C 404 91, 385 106, 330 118 C 250 126, 140 120, 78 110"
           stroke="url(#sig-gradient)"
           strokeWidth="2.8"
           strokeLinecap="round"
           style={{
-            strokeDasharray: 520,
-            strokeDashoffset: animate ? 0 : 520,
-            transition: `stroke-dashoffset ${duration * 0.42}s cubic-bezier(0.2, 0.8, 0.2, 1) ${delay + duration * 0.62}s`,
+            strokeDasharray: 700,
+            strokeDashoffset: animate ? 0 : 700,
+            opacity: animate ? 1 : 0,
+            transition: `stroke-dashoffset ${duration * 0.35}s cubic-bezier(0.16, 1, 0.3, 1) ${delay + duration * 0.92}s, opacity 0.05s linear ${delay + duration * 0.92}s`,
             filter: 'url(#sig-glow)',
           }}
         />

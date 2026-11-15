@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Sistema de Autenticação Fintech (Centrior)', () => {
+  test.setTimeout(60000);
+
   test.beforeEach(async ({ context }) => {
     // Limpa cookies para garantir estado não autenticado
     await context.clearCookies();
@@ -39,8 +41,8 @@ test.describe('Sistema de Autenticação Fintech (Centrior)', () => {
     await demoButton.click();
 
     // Deve ser redirecionado para o dashboard com sucesso
-    await expect(page).toHaveURL(/\/dashboard|\//);
-    await expect(page.locator('text=Good morning')).toBeVisible();
+    await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
+    await expect(page.locator('text=Good morning')).toBeVisible({ timeout: 15000 });
 
     // Banner de Sandbox deve estar visível para contas demo
     await expect(page.locator('text=Modo Demonstração (Sandbox) Ativo')).toBeVisible();

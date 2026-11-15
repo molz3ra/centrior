@@ -36,7 +36,7 @@ export function Sidebar() {
   return (
     <aside className="hidden md:flex md:w-64 md:flex-col border-r border-border bg-card shrink-0">
       <div className="flex h-16 items-center px-6 border-b border-border">
-        <Link href="/dashboard">
+        <Link href="/" title="Voltar para a Página Inicial">
           <CentriorLogo size="sm" />
         </Link>
       </div>
@@ -45,7 +45,7 @@ export function Sidebar() {
           {navigation.map((item) => {
             const isActive =
               item.href === '/dashboard'
-                ? pathname === '/dashboard' || pathname === '/'
+                ? pathname === '/dashboard'
                 : pathname.startsWith(item.href);
             const Icon = item.icon;
             return (

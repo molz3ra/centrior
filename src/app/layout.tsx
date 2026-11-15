@@ -4,6 +4,7 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { WebVitalsReporter } from '@/components/analytics/web-vitals';
 import { CookieConsentBanner } from '@/components/layout/cookie-consent-banner';
+import { ScrollReset } from '@/components/layout/scroll-reset';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -108,6 +109,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               try {
+                if ('scrollRestoration' in history) {
+                  history.scrollRestoration = 'manual';
+                }
+                window.scrollTo(0, 0);
+
                 const storedTheme = localStorage.getItem('theme');
                 if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                   document.documentElement.classList.add('dark');
@@ -120,6 +126,7 @@ export default function RootLayout({
         />
       </head>
       <body className={cn('min-h-screen bg-background font-sans antialiased text-foreground', inter.className)}>
+        <ScrollReset />
         <WebVitalsReporter />
         {children}
         <CookieConsentBanner />

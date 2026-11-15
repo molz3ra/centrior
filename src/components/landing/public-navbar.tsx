@@ -76,12 +76,6 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
             Diferenciais
           </a>
           <a
-            href="#comparativo"
-            className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
-          >
-            Comparativo
-          </a>
-          <a
             href="#seguranca"
             className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
           >
@@ -97,35 +91,33 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
 
         {/* Action Buttons */}
         <div className="hidden sm:flex items-center gap-3">
+          <Link
+            href="/login"
+            className="px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 active:scale-[0.97] transition-all"
+          >
+            Entrar
+          </Link>
           {isAuthenticated ? (
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-bold transition-all shadow-md shadow-[#FF5722]/20 hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF5722] hover:bg-[#F4511E] text-white text-xs font-bold transition-all shadow-md shadow-[#FF5722]/20 hover:scale-[1.02] active:scale-[0.97]"
             >
               <span>Acessar meu Dashboard</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           ) : (
-            <>
-              <Link
-                href="/login"
-                className="px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
-              >
-                Entrar
-              </Link>
-              <button
-                onClick={handleInstantDemo}
-                disabled={isDemoLoading}
-                className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-[#FF5722] hover:from-orange-600 hover:to-[#F4511E] text-white text-xs font-bold transition-all shadow-md shadow-[#FF5722]/25 hover:shadow-lg hover:shadow-[#FF5722]/40 hover:scale-[1.02] cursor-pointer"
-              >
-                {isDemoLoading ? (
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                ) : (
-                  <Sparkles className="h-3.5 w-3.5 text-amber-200" />
-                )}
-                <span>Testar Demo (1-Clique)</span>
-              </button>
-            </>
+            <button
+              onClick={handleInstantDemo}
+              disabled={isDemoLoading}
+              className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-[#FF5722] hover:from-orange-600 hover:to-[#F4511E] text-white text-xs font-bold transition-all shadow-md shadow-[#FF5722]/25 hover:shadow-lg hover:shadow-[#FF5722]/40 hover:scale-[1.02] active:scale-[0.97] cursor-pointer"
+            >
+              {isDemoLoading ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Sparkles className="h-3.5 w-3.5 text-amber-200" />
+              )}
+              <span>Testar Demo (1-Clique)</span>
+            </button>
           )}
         </div>
 
@@ -163,13 +155,6 @@ export function PublicNavbar({ isAuthenticated = false }: PublicNavbarProps) {
               className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white"
             >
               Diferenciais
-            </a>
-            <a
-              href="#comparativo"
-              onClick={() => setIsMobileOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-white/5 hover:text-white"
-            >
-              Comparativo
             </a>
             <a
               href="#seguranca"

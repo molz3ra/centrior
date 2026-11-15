@@ -62,16 +62,6 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // 4. Se já tem sessão e tenta acessar /login ou /register -> redireciona para o dashboard
-  if (sessionToken && (pathname === '/login' || pathname === '/register')) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
-
-  // 5. Se já tem sessão e acessa '/' diretamente (sem ?public=true) -> redireciona para o dashboard
-  if (sessionToken && pathname === '/' && !request.nextUrl.searchParams.has('public')) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
-
   return NextResponse.next();
 }
 

@@ -10,9 +10,14 @@ export function Preloader() {
   const [shouldRender, setShouldRender] = useState(true);
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+
     // Modo de inspeção visual para captura de tela e validação
     if (typeof window !== 'undefined' && window.location.search.includes('preview_preloader')) {
-      setProgress(68);
+      const match = window.location.search.match(/preview_preloader=(\d+)/);
+      setProgress(match ? Number(match[1]) : 68);
       return;
     }
 
@@ -34,7 +39,10 @@ export function Preloader() {
       if (stepCount >= totalSteps || current >= 100) {
         clearInterval(timer);
         setProgress(100);
-        setTimeout(() => setIsFinished(true), 250);
+        setTimeout(() => {
+          setIsFinished(true);
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        }, 250);
         setTimeout(() => setShouldRender(false), 700);
       }
     }, intervalTime);
@@ -70,7 +78,7 @@ export function Preloader() {
             text="Centrior"
             color="#FF5722"
             fontSize={36}
-            duration={2.0}
+            duration={1.8}
             delay={0.1}
             className="w-[280px] sm:w-[320px]"
           />

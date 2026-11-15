@@ -4,7 +4,7 @@ test.describe('Sistema Unificado de Mensagens & Notificações (Centrior)', () =
   test.beforeEach(async ({ page }) => {
     // Autentica via sessão sandbox demo instantânea
     await page.request.post('/api/auth/demo-login');
-    await page.goto('/');
+    await page.goto('/dashboard');
     await expect(page.locator('text=Good morning')).toBeVisible({ timeout: 15000 });
   });
 

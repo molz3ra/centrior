@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const FAQS = [
   {
@@ -38,48 +39,77 @@ export function FaqSection() {
   };
 
   return (
-    <section id="faq" className="relative py-14 sm:py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center space-y-3 mb-10 sm:mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#FF5722] text-xs font-bold uppercase tracking-wider">
+    <section id="faq" className="relative w-full py-8 sm:py-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hairline structural divider */}
+      <div className="w-full border-t border-white/[0.06] mb-8 sm:mb-10" />
+
+      <div className="text-center space-y-2 mb-8">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#FF5722] text-xs font-bold uppercase tracking-wider">
           <HelpCircle className="h-3.5 w-3.5" />
           <span>Esclarecimentos Rápidos</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
           Perguntas Frequentes
         </h2>
-        <p className="text-sm text-slate-400">
+        <p className="text-xs sm:text-sm text-slate-400">
           Tire suas dúvidas técnicas e práticas sobre o funcionamento do Centrior.
         </p>
       </div>
 
-      <div className="space-y-3">
+      <div className="w-full space-y-3">
         {FAQS.map((faq, idx) => {
           const isOpen = openIndex === idx;
           return (
             <div
               key={idx}
-              className="rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all overflow-hidden"
+              className={cn(
+                'w-full rounded-2xl border transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden',
+                isOpen
+                  ? 'border-[#FF5722]/30 bg-white/[0.04] shadow-lg shadow-[#FF5722]/5'
+                  : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.035] hover:border-white/15'
+              )}
             >
               <button
                 onClick={() => toggle(idx)}
-                className="w-full flex items-center justify-between p-5 text-left transition-colors cursor-pointer"
+                className="w-full flex items-center justify-between p-4 sm:p-5 text-left transition-colors cursor-pointer select-none active:scale-[0.995]"
                 aria-expanded={isOpen}
               >
-                <span className="text-sm sm:text-base font-bold text-white pr-4">
+                <span className={cn(
+                  'text-sm font-bold pr-4 transition-colors duration-200',
+                  isOpen ? 'text-white' : 'text-slate-200 hover:text-white'
+                )}>
                   {faq.q}
                 </span>
-                <ChevronDown
-                  className={`h-5 w-5 text-slate-400 shrink-0 transition-transform duration-200 ${
-                    isOpen ? 'rotate-180 text-[#FF5722]' : ''
-                  }`}
-                />
+                <div className={cn(
+                  'h-7 w-7 rounded-full flex items-center justify-center shrink-0 border transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+                  isOpen
+                    ? 'border-[#FF5722]/40 bg-[#FF5722]/10 text-[#FF5722]'
+                    : 'border-white/10 bg-white/5 text-slate-400'
+                )}>
+                  <ChevronDown
+                    className={cn(
+                      'h-4 w-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+                      isOpen ? 'rotate-180' : 'rotate-0'
+                    )}
+                  />
+                </div>
               </button>
 
-              {isOpen && (
-                <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 animate-in fade-in duration-200">
-                  {faq.a}
+              <div
+                className={cn(
+                  'grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+                  isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                )}
+              >
+                <div className="overflow-hidden">
+                  <div className={cn(
+                    'px-4 sm:px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+                    isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1'
+                  )}>
+                    {faq.a}
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           );
         })}
